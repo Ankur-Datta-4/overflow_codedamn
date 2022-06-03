@@ -7,15 +7,15 @@ import {
   Route,
 } from "react-router-dom";
 import Landing from './Pages/Landing';
-import Navbar from './Components/Navbar';
+import Navi from './Components/Navbar';
 function App() {
 
 
   return (
     <div className="App">
       <BrowserRouter>
-        <Navbar />
-        {/* <Landing /> */}
+        <Navi />
+        <Landing />
       </BrowserRouter>
     </div>
   )

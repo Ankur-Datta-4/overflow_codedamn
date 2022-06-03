@@ -27,11 +27,10 @@ function Landing() {
     }, [vantaEffect]);
     return (
 
-        <div style={{ height: "100vh" }}
+        <div style={{ height: "100vh", zIndex: "-1" }}
             ref={myRef}>
 
-            <h2 style={{ color: "white" }}> React NeXt</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro accusantium laudantium eaque, repudiandae laborum architecto debitis error animi mollitia! Alias, quis sunt! Consequuntur earum cumque minima quidem, deleniti eos commodi?</p>
+
 
         </div>
 
