@@ -1,7 +1,7 @@
 const express=require('express')
 const { default: mongoose } = require('mongoose')
 const userRouter=require('./router/User')
-
+const groupRouter=require('./router/Group')
 const app=express()
 
 
@@ -9,6 +9,8 @@ const MONGO_URI='mongodb://localhost:27017/over'
 app.use(express.json())
 
 app.use("/api/user",userRouter)
+app.use("/api/group",groupRouter)
+
 
 app.get("/test",(req,res)=>{
     console.log("Tested")

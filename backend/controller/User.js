@@ -30,7 +30,7 @@ const updateUser=asyncWrap(async(req,res)=>{
     
     let keys=Object.keys(req.query)
     console.log(keys)
-
+// if interests added: add it to interest cache
     let map={'posts':posts,'bio':bio,'interests':interests,'links':links,'photoURL':photoURL}
     let toUpdate={}
     for(let i=0;i<keys.length;i++){
