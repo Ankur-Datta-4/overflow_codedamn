@@ -1331,6 +1331,11 @@ csstype@^3.0.2, csstype@^3.1.0:
   resolved "https://registry.npmjs.org/csstype/-/csstype-3.1.0.tgz"
   integrity sha512-uX1KG+x9h5hIJsaKR9xHUeUraxf8IODOwq9JLNPq6BwB04a/xgpq3rcx47l5BZu5zBPlgD342tdke3Hom/nJRA==
 
+date-fns@^2.28.0:
+  version "2.28.0"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.28.0.tgz#9570d656f5fc13143e50c975a3b6bbeb46cd08b2"
+  integrity sha512-8d35hViGYx/QH0icHYCeLmsLmMUheMmTyV9Fcm6gvNwdw31yXXH+O85sOBJ+OLnLQMKZowvpKb6FgMIQjcpvQw==
+
 debug@^4.1.0:
   version "4.3.4"
   resolved "https://registry.npmjs.org/debug/-/debug-4.3.4.tgz"
@@ -2109,6 +2114,14 @@ quick-lru@^5.1.1:
   resolved "https://registry.npmjs.org/quick-lru/-/quick-lru-5.1.1.tgz"
   integrity sha512-WuyALRjWPDGtt/wzJiadO5AXY+8hZ80hVpe6MyivgraREW751X3SbhRvG3eLKOYN+8VEvqLcf3wdnt44Z4S4SA==
 
+react-activity-calendar@^1.5.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/react-activity-calendar/-/react-activity-calendar-1.6.0.tgz#72e482f31389b0bf018030fb2ea630660e281c37"
+  integrity sha512-Pyar4K9S2/SKdAF0ZIRZHBUAchOof8m34HRLrkI1uTjU38a1c2LNBcoQBiQEr4s6ZtNjzy0ZHUHiZdCBbUC12g==
+  dependencies:
+    date-fns "^2.28.0"
+    tinycolor2 "^1.4.0"
+
 react-bootstrap@^2.4.0:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/react-bootstrap/-/react-bootstrap-2.4.0.tgz#99bf9656e2e7a23ae1ae135d18fd5ad7c344b416"
@@ -2147,6 +2160,13 @@ react-flatpickr@^3.10.12:
   dependencies:
     flatpickr "^4.6.2"
     prop-types "^15.5.10"
+
+react-github-calendar@^3.3.1:
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/react-github-calendar/-/react-github-calendar-3.3.1.tgz#6111cbfc7f8382d802bb630887e1d02d9dc7dcbc"
+  integrity sha512-0m9qnia/HbAYQdbOvr7l59zxLFSs3ZRzJYyXXKSUxGKdScHSipiGw3g2pu6rS1VGAPE9NtVJhuLq1qrbItlVpA==
+  dependencies:
+    react-activity-calendar "^1.5.0"
 
 react-icons@^4.4.0:
   version "4.4.0"
@@ -2451,6 +2471,11 @@ tailwindcss@^3.0.24:
     postcss-value-parser "^4.2.0"
     quick-lru "^5.1.1"
     resolve "^1.22.0"
+
+tinycolor2@^1.4.0:
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/tinycolor2/-/tinycolor2-1.4.2.tgz#3f6a4d1071ad07676d7fa472e1fac40a719d8803"
+  integrity sha512-vJhccZPs965sV/L2sU4oRQVAos0pQXwsvTLkWYdqJ+a8Q5kPFzJTuOFwy7UniPli44NKQGAglksjvOcpo95aZA==
 
 tmp@^0.2.1:
   version "0.2.1"

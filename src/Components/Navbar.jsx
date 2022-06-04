@@ -8,19 +8,49 @@ import { NavDropdown } from 'react-bootstrap';
 import { Form } from 'react-bootstrap';
 import { FormControl } from 'react-bootstrap';
 import { FcSearch } from 'react-icons/fc';
+import image from './logo.png'
+import { FcHome } from "react-icons/fc";
+import { FcPlus } from "react-icons/fc";
+import { FcAbout } from "react-icons/fc";
+import { FcContacts } from "react-icons/fc";
+import { SiMessenger } from "react-icons/si";
+import { useState } from 'react';
+import { GrLogin } from "react-icons/gr";
+import * as React from 'react';
+import Stack from '@mui/material/Stack';
+// import { Link } from "react-router-dom";
+// import { Button } from '@mui/material';
+
 const Navi = () => {
+
+
+    let [loggedIn, setLoggedIn] = useState(true);
+    const styles =
+    {
+        image:
+        {
+            width: "68px",
+            height: "60px",
+            borderRadius: "50%",
+            marginLeft: "200px",
+            display: loggedIn ? "block" : "none"
+        }
+    }
+
     return (
         <div className="navbar" style={{ width: "100%", zIndex: "5", position: "sticky", padding: "0", top: "0" }}>
             {/* <Navbar {...props} /> */}
-            <Navbar style={{ width: "100%", backgroundColor: "#000", color: "white" }} expand="md">
+            <Navbar style={{ width: "100%", backgroundColor: "#000", color: "white", paddingBottom: "10px" }} expand="md">
                 <Container fluid>
-                    <Navbar.Brand style={{ color: "white", fontSize: "150%", marginRight: "30px" }} href="/">PESUOVER_TEST</Navbar.Brand>
+                    <Navbar.Brand style={{ margin: "0", padding: "0", color: "white", fontSize: "150%", marginRight: "30px" }} href="/">
+                        <img style={{ width: "80px", height: "80px" }} src={image} alt="" />
+                    </Navbar.Brand>
 
                     <Navbar.Toggle style={{ backgroundColor: "rgba(255 , 255 , 255 , 0.25)", color: "white" }} aria-controls="navbarScroll" />
                     <Navbar.Collapse id="navbarScroll">
                         <Form className="d-flex">
                             <FormControl
-                                style={{}}
+                                style={{ display: loggedIn ? "block" : "none" }}
                                 type="search"
                                 placeholder="Search"
                                 className="me-2"
@@ -29,18 +59,47 @@ const Navi = () => {
                             />
 
                             {/* <FcSearch style={{ width: "23%", height: "23%", backgroundColor: "whitesmoke", borderRadius: "10px", marginRight: "10%" }} /> */}
-                            <Button style={{ marginLeft: "1%", marginRight: "10%" }} variant="outline-light"><FcSearch /></Button>
+                            <Button style={{ display: loggedIn ? "block" : "none", marginLeft: "1%", marginRight: "15%" }} variant="outline-light"><FcSearch /></Button>
                         </Form>
                         <Nav
 
                             className="me-auto my-2 my-lg-0"
-                            style={{ maxHeight: '100px', color: "white" }}
+                            style={{ marginLeft: "500px", maxHeight: '100px', color: "white" }}
                             navbarScroll
                         >
-                            <Nav.Link style={{ color: "white", fontSize: "120%", marginRight: "13%" }} href="#action1">Home</Nav.Link>
-                            <Nav.Link style={{ color: "white", fontSize: "120%", marginRight: "13%" }} href="#action2">About</Nav.Link>
-                            <Nav.Link style={{ color: "white", fontSize: "120%", marginRight: "13%" }} href="#action2">Contact</Nav.Link>
-                            <Nav.Link style={{ color: "white", fontSize: "120%", marginRight: "13%" }} href="#action2">Link</Nav.Link>
+                            <Nav.Link style={{ display: loggedIn ? "block" : "none", width: "50px", height: "50px", padding: "0px", color: "white", marginRight: "23%" }} href="/">HOME<FcHome style={{ width: "50px", height: "50px" }} />
+
+                                <span style={{ position: "absolute" }}>
+                                    <a href="/login">
+                                        <FcPlus />
+                                    </a>
+                                </span>
+
+                            </Nav.Link>
+                            <Nav.Link style={{ display: loggedIn ? "block" : "none", width: "50px", height: "50px", padding: "0", color: "white", marginRight: "23%" }} href="/about">ABOUT<FcAbout style={{ width: "50px", height: "50px" }} /></Nav.Link>
+                            <Nav.Link style={{ display: loggedIn ? "block" : "none", width: "50px", height: "50px", padding: "0", color: "white", marginRight: "23%" }} href="#action2">MESSAGES<SiMessenger style={{
+                                width: "45px", height: "45px"
+                            }} /></Nav.Link>
+                            <Nav.Link style={{ display: loggedIn ? "block" : "none", width: "50px", height: "50px", padding: "0", color: "white" }} href="#action2">
+
+                                <img src={image} style={styles.image} />
+
+                            </Nav.Link>
+
+                            {/* <Nav.Link style={{ display: !loggedIn ? "block" : "none", width: "50px", height: "50px", padding: "0", color: "white", marginRight: "23%" }} href="/about"></Nav.Link> */}
+                            <Nav.Link style={{ display: !loggedIn ? "block" : "none", width: "50px", height: "50px", padding: "0", color: "white" }} href="#action2">
+
+                                <a href="/login">
+
+                                    <button style={{ position: "absolute", borderRadius: "16px", fontSize: "25px", fontWeight: "600", paddingBottom: "0.3rem", paddingTop: "0.3rem", right: "20px", paddingLeft: "80px", paddingRight: "80px", background: "linear-gradient(45deg, #00B5B0, blue)", color: "white" }}>
+
+                                        L O G I N
+
+                                    </button>
+
+                                </a>
+
+                            </Nav.Link>
 
                         </Nav>
 

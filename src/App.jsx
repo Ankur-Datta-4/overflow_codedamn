@@ -12,7 +12,7 @@ import Navi from './Components/Navbar';
 import Login from './Pages/Login';
 import SignUp from './Pages/Register';
 import PostCompi from './Components/PostComponent';
-
+import User from './Pages/User';
 import Home from './Pages/Home'
 import Messenger from './Pages/Messenger';
 function App() {
@@ -30,6 +30,7 @@ function App() {
           <Route path="/login/success" element={<Home />} />
           <Route path="/messenger" element={<Messenger />} />
 
+          <Route path="/user" element={<User/>}/>
         </Routes>
       </BrowserRouter>
     </div>
