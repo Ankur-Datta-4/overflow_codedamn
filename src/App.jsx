@@ -27,7 +27,6 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<SignUp />} />
           <Route path="/login/success" element={<Home />} />
-
         </Routes>
       </BrowserRouter>
     </div>
