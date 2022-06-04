@@ -18,6 +18,7 @@ import { useState } from 'react';
 import { GrLogin } from "react-icons/gr";
 import * as React from 'react';
 import Stack from '@mui/material/Stack';
+import Avatar from '@mui/material/Avatar';
 // import { Link } from "react-router-dom";
 // import { Button } from '@mui/material';
 
@@ -25,6 +26,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import AddBoxIcon from '@mui/icons-material/AddBox';//plus icon
 import MessageIcon from '@mui/icons-material/Message';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';//just in case
+import SearchIcon from '@mui/icons-material/Search';
 
 const Navi = () => {
 
@@ -45,17 +47,22 @@ const Navi = () => {
     return (
         <div className="navbar" style={{ width: "100%", zIndex: "5", position: "sticky", padding: "0", top: "0" }}>
             {/* <Navbar {...props} /> */}
+
+
             <Navbar style={{ width: "100%", backgroundColor: "#000", color: "white", paddingBottom: "10px" }} expand="md">
                 <Container fluid>
+
+
                     <Navbar.Brand style={{ margin: "0", padding: "0", color: "white", fontSize: "150%", marginRight: "30px" }} href="/">
                         <img style={{ width: "80px", height: "80px" }} src={image} alt="" />
                     </Navbar.Brand>
 
                     <Navbar.Toggle style={{ backgroundColor: "rgba(255 , 255 , 255 , 0.25)", color: "white" }} aria-controls="navbarScroll" />
+
                     <Navbar.Collapse id="navbarScroll">
                         <Form className="d-flex">
                             <FormControl
-                                style={{ display: loggedIn ? "block" : "none" }}
+                                style={{ display: loggedIn ? "block" : "none", width: "300px" }}
                                 type="search"
                                 placeholder="Search"
                                 className="me-2"
@@ -64,7 +71,7 @@ const Navi = () => {
                             />
 
                             {/* <FcSearch style={{ width: "23%", height: "23%", backgroundColor: "whitesmoke", borderRadius: "10px", marginRight: "10%" }} /> */}
-                            <Button style={{ display: loggedIn ? "block" : "none", marginLeft: "1%", marginRight: "15%" }} variant="outline-light"><FcSearch /></Button>
+                            <Button style={{ display: loggedIn ? "block" : "none", marginLeft: "1%", marginRight: "15%" }} variant="outline-light"><SearchIcon /></Button>
                         </Form>
                         <Nav
 
@@ -72,24 +79,29 @@ const Navi = () => {
                             style={{ marginLeft: "500px", maxHeight: '100px', color: "white" }}
                             navbarScroll
                         >
-                            <Nav.Link style={{ display: loggedIn ? "block" : "none", width: "50px", height: "50px", padding: "0px", color: "white", marginRight: "23%" }} href="/">HOME<FcHome style={{ width: "50px", height: "50px" }} />
+                            <Nav.Link style={{ verticalAlign: "baseline", display: loggedIn ? "block" : "none", width: "50px", height: "50px", padding: "0px", color: "white", marginRight: "5rem" }}
 
-                                <span style={{ position: "absolute" }}>
-                                    <a href="/login">
-                                        <FcPlus />
-                                    </a>
-                                </span>
-
+                                href="/">
+                                <HomeIcon style={{ width: "50px", height: "50px" }} />
                             </Nav.Link>
-                            <Nav.Link style={{ display: loggedIn ? "block" : "none", width: "50px", height: "50px", padding: "0", color: "white", marginRight: "23%" }} href="/about">ABOUT<FcAbout style={{ width: "50px", height: "50px" }} /></Nav.Link>
-                            <Nav.Link style={{ display: loggedIn ? "block" : "none", width: "50px", height: "50px", padding: "0", color: "white", marginRight: "23%" }} href="#action2">MESSAGES<SiMessenger style={{
+
+                            <Nav.Link style={{ verticalAlign: "baseline", display: loggedIn ? "block" : "none", width: "50px", height: "50px", padding: "0px", color: "white", marginRight: "5rem" }}
+
+                                href="/">
+                                <AddBoxIcon style={{ width: "50px", height: "50px" }} />
+                            </Nav.Link>
+                            {/* <Nav.Link style={{ display: loggedIn ? "block" : "none", width: "50px", height: "50px", padding: "0", color: "white", marginRight: "23%" }} href="/about">ABOUT<FcAbout style={{ width: "50px", height: "50px" }} /></Nav.Link> */}
+                            <Nav.Link style={{ verticalAlign: "baseline", display: loggedIn ? "block" : "none", width: "50px", height: "50px", padding: "0", color: "white", marginRight: "5rem" }} href="#action2"><MessageIcon style={{
                                 width: "45px", height: "45px"
                             }} /></Nav.Link>
-                            <Nav.Link style={{ display: loggedIn ? "block" : "none", width: "50px", height: "50px", padding: "0", color: "white" }} href="#action2">
 
-                                <img src={image} style={styles.image} />
 
-                            </Nav.Link>
+                            {/* <Nav.Link style={{ display: loggedIn ? "block" : "none", width: "50px", height: "50px", padding: "0", color: "white" }} href="#action2">
+
+                              
+
+                            </Nav.Link> */}
+                            <Avatar style={{ verticalAlign: "baseline", display: loggedIn ? "block" : "none" }} alt="Remy Sharp" src="" />
 
                             {/* <Nav.Link style={{ display: !loggedIn ? "block" : "none", width: "50px", height: "50px", padding: "0", color: "white", marginRight: "23%" }} href="/about"></Nav.Link> */}
                             <Nav.Link style={{ display: !loggedIn ? "block" : "none", width: "50px", height: "50px", padding: "0", color: "white" }} href="#action2">
