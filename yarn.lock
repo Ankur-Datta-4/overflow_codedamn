@@ -1360,8 +1360,6 @@ react-dom@^18.0.0:
     loose-envify "^1.1.0"
     scheduler "^0.22.0"
 
-<<<<<<< HEAD
-=======
 react-fast-compare@^3.0.1:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-3.2.0.tgz#641a9da81b6a6320f270e89724fb45a0b39e43bb"
@@ -1375,7 +1373,6 @@ react-flatpickr@^3.10.12:
     flatpickr "^4.6.2"
     prop-types "^15.5.10"
 
->>>>>>> c981c28fc50e12bd31a5c8f40b4a6e402a5a2205
 react-icons@^4.4.0:
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-4.4.0.tgz#a13a8a20c254854e1ec9aecef28a95cdf24ef703"

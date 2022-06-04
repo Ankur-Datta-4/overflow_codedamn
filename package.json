@@ -17,10 +17,7 @@
     "react": "^18.0.0",
     "react-bootstrap": "^2.4.0",
     "react-dom": "^18.0.0",
-<<<<<<< HEAD
-=======
     "react-flatpickr": "^3.10.12",
->>>>>>> c981c28fc50e12bd31a5c8f40b4a6e402a5a2205
     "react-icons": "^4.4.0",
     "react-router-dom": "^6.3.0",
     "reactstrap": "^9.0.3",
