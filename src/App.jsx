@@ -8,14 +8,23 @@ import {
 } from "react-router-dom";
 import Landing from './Pages/Landing';
 import Navi from './Components/Navbar';
+
+import Login from './Pages/Login';
+import SignUp from './Pages/Register';
+
 function App() {
 
 
   return (
     <div className="App">
+      <Navi />
       <BrowserRouter>
-        <Navi />
-        <Landing />
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/login" element={<Login/>} />
+        <Route path="/register" element={<SignUp/>} />
+
+      </Routes>
       </BrowserRouter>
     </div>
   )
