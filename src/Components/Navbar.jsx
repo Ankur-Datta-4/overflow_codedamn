@@ -21,6 +21,11 @@ import Stack from '@mui/material/Stack';
 // import { Link } from "react-router-dom";
 // import { Button } from '@mui/material';
 
+import HomeIcon from '@mui/icons-material/Home';
+import AddBoxIcon from '@mui/icons-material/AddBox';//plus icon
+import MessageIcon from '@mui/icons-material/Message';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';//just in case
+
 const Navi = () => {
 
 
