@@ -2,6 +2,7 @@ const express=require('express')
 const { default: mongoose } = require('mongoose')
 const userRouter=require('./router/User')
 const groupRouter=require('./router/Group')
+const searchRouter=require('./router/Search')
 const app=express()
 
 
@@ -10,7 +11,7 @@ app.use(express.json())
 
 app.use("/api/user",userRouter)
 app.use("/api/group",groupRouter)
-
+app.use("/api/search",searchRouter)
 
 app.get("/test",(req,res)=>{
     console.log("Tested")
