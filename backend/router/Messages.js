@@ -1,4 +1,4 @@
-const { recvMessage, sendMessage, createChat, addMember, deleteChat } = require('../controller/Messages')
+const { recvMessage, sendMessage, createChat, addMember, deleteChat, getChats } = require('../controller/Messages')
 
 const router=require('express').Router()
 
@@ -12,4 +12,6 @@ router.route('/:convId')
     .delete(deleteChat)
 
 
+router.route('/:id')
+    .get(getChats)
 module.exports=router

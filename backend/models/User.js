@@ -29,7 +29,8 @@ const UserSchema=mongoose.Schema({
     bio:String,
     posts:[
         String
-    ]
+    ],
+    chats:[String]//convIds
 })
 
 UserSchema.pre('validate',function(next){

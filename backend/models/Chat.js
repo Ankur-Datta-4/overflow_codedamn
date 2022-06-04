@@ -9,7 +9,9 @@ const ChatSchema=mongoose.Schema({
     recentMessage:{
         type:String,
     },
-    chatName:String
+    chatName:String,
+    photoURL:String
+
 })
 
 const ChatModel=mongoose.model('Chat',ChatSchema)

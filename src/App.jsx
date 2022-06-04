@@ -14,6 +14,7 @@ import SignUp from './Pages/Register';
 import PostCompi from './Components/PostComponent';
 
 import Home from './Pages/Home'
+import Messenger from './Pages/Messenger';
 function App() {
 
 
@@ -27,6 +28,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<SignUp />} />
           <Route path="/login/success" element={<Home />} />
+          <Route path="/messenger" element={<Messenger />} />
+
         </Routes>
       </BrowserRouter>
     </div>
