@@ -11,14 +11,21 @@ const createUser=asyncWrap(async(req,res)=>{
 
     
     let obj={name,email,photoURL}
+    let initUser=await UserModel.findOne({email})
+
+    if(initUser!=null){
+        return res.status(200).json({success:true,isPresent:true,slug:initUser.userSlug})
+    }else{
+
+
     let resUser=await UserModel.create(obj);
 
     if(resUser){
-        return res.status(201).json({success:true,id:resUser._id,slug:resUser.userSlug})
+        return res.status(201).json({success:true,id:resUser._id,slug:resUser.userSlug,isPresent:false})
     }else{
         return res.status(400).json({success:false,msg:'Error creating'})
     }
-    
+}
     
 })
 //update-user

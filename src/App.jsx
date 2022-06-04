@@ -13,7 +13,9 @@ import Login from './Pages/Login';
 import SignUp from './Pages/Register';
 import PostCompi from './Components/PostComponent';
 
+import Home from './Pages/Home'
 function App() {
+
 
 
   return (
@@ -24,7 +26,7 @@ function App() {
           <Route path="/" element={<Landing />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<SignUp />} />
-          <Route path="/test" element={<PostCompi />} />
+          <Route path="/login/success" element={<Home />} />
 
         </Routes>
       </BrowserRouter>
