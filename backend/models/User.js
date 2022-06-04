@@ -42,8 +42,20 @@ const UserModel=mongoose.model("User",UserSchema)
 
 
 const InterestSchema=mongoose.Schema({
-    tag:String,
-    users:[String]
+    tag:{
+        type:String,
+        unique:true
+    },
+    users:[{
+        name:String,
+        id:String,
+        photoURL:String
+    }],
+    groups:[{
+        name:String,
+        id:String,
+        photoURL:String
+    }]
 })
 
 const InterestModel=mongoose.model("Interest",InterestSchema)

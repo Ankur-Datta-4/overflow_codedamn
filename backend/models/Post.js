@@ -13,7 +13,7 @@ const PostSchema=mongoose.Schema({
         uName:String,
         content:String
     }]
-})
+},{timestamps:true})
 
 const Model=mongoose.model('Post',PostSchema)
 
