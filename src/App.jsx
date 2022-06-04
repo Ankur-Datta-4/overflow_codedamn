@@ -11,9 +11,10 @@ import Navi from './Components/Navbar';
 
 import Login from './Pages/Login';
 import SignUp from './Pages/Register';
-
+import Home from './Pages/Home'
 function App() {
 
+  
 
   return (
     <div className="App">
@@ -23,6 +24,7 @@ function App() {
         <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login/>} />
         <Route path="/register" element={<SignUp/>} />
+        <Route path="/login/success" element={<Home/>} />
 
       </Routes>
       </BrowserRouter>

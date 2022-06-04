@@ -14,6 +14,13 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { FcGoogle } from "react-icons/fc";
+import {auth,provider} from '../Firebase'
+import { signInWithPopup } from 'firebase/auth';
+import { useDispatch } from 'react-redux';
+import { setUserLoginDetails } from '../Features/User/userSlice';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -27,16 +34,57 @@ function Copyright(props) {
   );
 }
 
+const SERVERURL="http://localhost:1337/api"
+
 const theme = createTheme();
 
 export default function Login() {
+
+  const dispatch=useDispatch()
+  let navigate=useNavigate();
+
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    
+    signInWithPopup(auth,provider)
+    .then((result)=>{
+      console.log(result.user)      
+      let {displayName:name, email, photoURL}=result.user;
+      let obj2={name,email,photoURL};
+
+
+      axios.post(`${SERVERURL}/user`,obj2)
+      .then((res)=>{
+        console.log(res.data)
+        if(res.data && res.data.success){
+          obj2={...obj2,slug:res.data.slug}
+          
+
+          console.log(obj2)
+          dispatch(setUserLoginDetails(obj2));
+          //existing user
+          if(res.data.isPresent){
+              
+            navigate('/login/success')
+          }else{
+            navigate('/register')
+          }
+
+        }
+      }).catch((err)=>{
+        console.log(`Error in axios backend`)
+        console.log(err)
+        //create some alert bar bro
+      })
+      
+
+      //dispatch(obj2)
+    })
+    .catch((err)=>{
+      console.log(`Err during SigninWithPopUp`)
+      console.error(err)
+    })
   };
 
   return (

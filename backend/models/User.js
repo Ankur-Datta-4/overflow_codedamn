@@ -3,6 +3,7 @@ const { default: slugify } = require('slugify')
 
 const UserSchema=mongoose.Schema({
     name:String,
+    // phone:String,
     userSlug:{
         type:String,
         unique:true

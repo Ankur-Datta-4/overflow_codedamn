@@ -26,6 +26,13 @@ import Flatpickr from "react-flatpickr";
 
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import { TextareaAutosize } from '@mui/material';
+import axios from 'axios';
+import {useSelector,useDispatch} from 'react-redux';
+import {selectUserName,selectUserSlug,setSignoutState} from '../Features/User/userSlice'
+import { useNavigate } from 'react-router-dom';
+
+const SERVERURL="http://localhost:1337/api"
+
 
 function Copyright(props) {
   return (
@@ -43,18 +50,52 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignUp() {
+
+  const username=useSelector(selectUserName);
+  const slug=useSelector(selectUserSlug);
+const navigate=useNavigate()
+const dispatch=useDispatch()
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-      name:data.get('firstName'),
-      Github:data.get('github'),
-      Linkedin:data.get('linkedin'),
-      username:data.get('username'),
+    
+
+    let interestArr=data.get('interest').split(',')
+
+    let obj={
+     
+      links:[{
+        provider:'github',
+        url:data.get('github'),
+      },{
+        provider:'linkedin',
+        url:data.get('linkedin'),
+      }]
+      ,
       bio:data.get('bio'),
-    });
+      interests:interestArr,
+    }
+    console.log(obj);
+
+    axios.patch(`${SERVERURL}/user/${slug}?links=true&bio=true&interests=true`,obj)
+    .then((res)=>{
+      console.log(`Data from server`);
+      console.log(res.data)
+
+      if(!res.data.err){
+        navigate('/login/success'); 
+      }else{
+        console.log("Could not update values: signing out")
+        dispatch(setSignoutState());
+        navigate('/')
+      }
+    }).catch((err)=>{
+      console.log(`Error in Updating values `)
+      console.log(err)
+    })
+
+
   };
 
   return (
@@ -73,11 +114,11 @@ export default function SignUp() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign up
+            Hi {username}!
           </Typography>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
-              <Grid item xs={12}>
+              {/* <Grid item xs={12}>
                 <TextField
                   autoComplete="given-name"
                   name="firstName"
@@ -87,7 +128,7 @@ export default function SignUp() {
                   label="Name"
                   autoFocus
                 />
-              </Grid>
+              </Grid> */}
 
              
               {/* <Grid item xs={12} sm={6}>
@@ -112,22 +153,22 @@ export default function SignUp() {
                         renderInput={(params) => <TextField {...params} />}
                 />
             </Grid> */}
-            <Grid item xs={12} sm={6}>
+            {/* <Grid item xs={12} sm={6}>
                 <TextField
                   required
                   fullWidth
-                  id="mob"
-                  label="Mobile Number"
-                  name="number"
-                  autoComplete="mob"
+                  id="interest"
+                  label="Interests"
+                  name="Interests"
+                  autoComplete="interest"
                 />
 
                 
-              </Grid>
+              </Grid> */}
 
-            <Grid item xs={12} sm={6}>
-              <div className="form-group mb-4">
-                      {/* <Label>DOB</Label> */}
+            {/* <Grid item xs={12} sm={6}> */}
+              {/* <div className="form-group mb-4">
+                      <Label>DOB</Label>
                       <InputGroup>
                         <Flatpickr
                           
@@ -140,16 +181,17 @@ export default function SignUp() {
                           }}
                         />
                       </InputGroup>
-            </div>
-            </Grid>
+            </div> */}
+            {/* </Grid> */}
+            
               <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
+                  id="interest"
+                  label="Interests"
+                  name="interest"
+                  autoComplete="interest"
                 />
               </Grid>
 
@@ -189,7 +231,7 @@ export default function SignUp() {
             </Grid>
             
         
-            
+{/*             
             <Grid item xs={12}>
                 <TextField
                   autoComplete="username"
@@ -200,8 +242,8 @@ export default function SignUp() {
                   label="@Username"
                   autoFocus
                 />
-              </Grid>
-              <Grid item xs={12}>
+              </Grid> */}
+              {/* <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
@@ -211,7 +253,7 @@ export default function SignUp() {
                   id="password"
                   autoComplete="new-password"
                 />
-              </Grid>
+              </Grid> */}
               {/* <Grid item xs={12}>
                 <FormControlLabel
                   control={<Checkbox value="allowExtraEmails" color="primary" />}
@@ -222,7 +264,7 @@ export default function SignUp() {
               <Grid item xs={12}>
                   <TextareaAutosize
                   aria-label="empty textarea"
-                //   placeholder="  Bio"
+                  placeholder="  Tell something about yourself"
                   className='ml-2'
                   name="bio"
                   label="Bio"

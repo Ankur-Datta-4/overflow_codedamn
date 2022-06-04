@@ -3,10 +3,12 @@ const { default: mongoose } = require('mongoose')
 const userRouter=require('./router/User')
 const groupRouter=require('./router/Group')
 const searchRouter=require('./router/Search')
+const cors=require('cors')
 const app=express()
 
 
 const MONGO_URI='mongodb://localhost:27017/over'
+app.use(cors())
 app.use(express.json())
 
 app.use("/api/user",userRouter)
