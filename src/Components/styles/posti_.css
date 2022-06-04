@@ -1,0 +1,42 @@
+/* 
+    ---------------TESTING---------------
+*
+{
+    color: blue;
+} */
+
+.card
+{
+    border:"1px solid black"
+}
+textarea
+{
+    outline-color: aliceblue;
+    outline-width: 0ch;
+    border-width: 0px;
+}
+
+button:hover{
+    background-color: white;
+    color:"#0A66C2",
+    
+}
+button:focus
+{
+    outline: none;
+    border:0
+}
+ 
+input:focus
+{
+    outline: none;
+    border:0
+}
+
+
+#inputBox {
+    outline:none;
+}
+#inputBox:focus {
+    outline:none;
+}

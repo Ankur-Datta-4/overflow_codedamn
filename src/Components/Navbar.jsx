@@ -1,4 +1,3 @@
-
 import 'responsive-navbar-react/dist/index.css'
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { Button } from 'react-bootstrap';
@@ -11,7 +10,7 @@ import { FormControl } from 'react-bootstrap';
 import { FcSearch } from 'react-icons/fc';
 const Navi = () => {
     return (
-        <div className="navbar" style={{ width: "100%", zIndex: "2", position: "sticky", padding: "0", top: "0" }}>
+        <div className="navbar" style={{ width: "100%", zIndex: "5", position: "sticky", padding: "0", top: "0" }}>
             {/* <Navbar {...props} /> */}
             <Navbar style={{ width: "100%", backgroundColor: "#000", color: "white" }} expand="md">
                 <Container fluid>
