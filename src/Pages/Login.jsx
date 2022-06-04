@@ -65,9 +65,11 @@ export default function Login() {
           dispatch(setUserLoginDetails(obj2));
           //existing user
           if(res.data.isPresent){
-              
+            // ToastShow('Login','Login Successfull','success')
+            // toast.success("Login Successful")
             navigate('/login/success')
           }else{
+            // toast.error("Login failed")
             navigate('/register')
           }
 

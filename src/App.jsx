@@ -14,7 +14,7 @@ import SignUp from './Pages/Register';
 import Home from './Pages/Home'
 function App() {
 
-  
+
 
   return (
     <div className="App">
@@ -25,7 +25,6 @@ function App() {
         <Route path="/login" element={<Login/>} />
         <Route path="/register" element={<SignUp/>} />
         <Route path="/login/success" element={<Home/>} />
-
       </Routes>
       </BrowserRouter>
     </div>
