@@ -17,7 +17,7 @@ const Navi = () => {
                 <Container fluid>
                     <Navbar.Brand style={{ color: "white", fontSize: "150%", marginRight: "30px" }} href="/">PESUOVER_TEST</Navbar.Brand>
 
-                    <Navbar.Toggle style={{ backgroundColor: "#ffffff", color: "white" }} aria-controls="navbarScroll" />
+                    <Navbar.Toggle style={{ backgroundColor: "rgba(255 , 255 , 255 , 0.25)", color: "white" }} aria-controls="navbarScroll" />
                     <Navbar.Collapse id="navbarScroll">
                         <Form className="d-flex">
                             <FormControl
