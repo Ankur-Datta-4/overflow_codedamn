@@ -17,7 +17,10 @@
     "react": "^18.0.0",
     "react-bootstrap": "^2.4.0",
     "react-dom": "^18.0.0",
+    "react-flatpickr": "^3.10.12",
+    "react-icons": "^4.4.0",
     "react-router-dom": "^6.3.0",
+    "reactstrap": "^9.0.3",
     "responsive-navbar-react": "^1.2.1",
     "vanta": "^0.5.22"
   },

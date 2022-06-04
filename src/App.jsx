@@ -10,6 +10,8 @@ import Landing from './Pages/Landing';
 import Navi from './Components/Navbar';
 
 import Login from './Pages/Login';
+import SignUp from './Pages/Register';
+
 function App() {
 
 
@@ -20,7 +22,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login/>} />
-        </Routes>
+        <Route path="/register" element={<SignUp/>} />
+
+      </Routes>
       </BrowserRouter>
     </div>
   )
