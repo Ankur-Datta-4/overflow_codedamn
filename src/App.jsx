@@ -20,9 +20,12 @@ import Chat from './Components/Chat';
 
 import GroupProfile from './Pages/Group';
 import CreateGroup from './Pages/CreateGroup'
+import {useSelector} from 'react-redux';
+import {selectUserName} from './Features/User/userSlice'
+
 function App() {
 
-
+  const user=useSelector(selectUserName)
   const recipeItem = {
     recipeAuthor: "Efecan",
     title: "Avokado Ezmeli Taco",
@@ -37,25 +40,42 @@ function App() {
   return (
     <div className="App">
       <Navi />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Landing />} />
+      {/* <BrowserRouter>
+        <Routes> */}
+          {user===''?(
+            <BrowserRouter>
+            <Routes>
+            <Route path="/" element={<Landing />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<SignUp />} />
-          <Route path="/login/success" element={<Home />} />
-          {/* <Route path="/messenger" element={<Messenger />} /> */}
-          <Route path="/user" element={<User />} />
-          <Route path="/messenger" element={<Chat />} />
-          <Route path="/test" element={<Card
-            post={recipeItem}
+          
+        </Routes>
+      </BrowserRouter>
+          ):(
 
-          />} />
+
+            <BrowserRouter>
+            <Routes>
+            <Route path="/" element={<Landing />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<SignUp />} />
+            
+          <Route path="/home" element={<Home />} />
+          {/* <Route path="/messenger" element={<Messenger />} /> */}
+          <Route path="/user/:id" element={<User />} />
+          <Route path="/messenger" element={<Chat />} />
+          <Route path="/test" element={<Card post={recipeItem}/>} />
 
           <Route path="/user" element={<User/>}/>
           <Route path="/group" element={<GroupProfile/>}/>
           <Route path="/create-group" element={<CreateGroup/>}/>
+          
         </Routes>
       </BrowserRouter>
+          )
+
+    }
+         
     </div>
   )
 }
