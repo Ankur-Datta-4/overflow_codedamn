@@ -8,7 +8,7 @@ const Card = ({ post: props }) => {
 
     return (
 
-        <div style={{ maxWidth: "400px" }} className="card">
+        <div style={{ maxWidth: "400px" }} className="cardi">
             <div className="card-header">
                 <div className="profile">
                     <span className="letter">Name</span>
