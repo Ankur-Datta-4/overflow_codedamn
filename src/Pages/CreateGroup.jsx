@@ -20,6 +20,7 @@ import { BsLinkedin } from 'react-icons/bs';
 import { GrTwitter } from 'react-icons/gr';
 import { RiInstagramFill } from 'react-icons/ri';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import { SiDiscord } from 'react-icons/si';
 
 import {    Badge} from "reactstrap"
 
@@ -200,6 +201,20 @@ export default function GroupCreate() {
               
             </Grid>
 
+            <Grid item xs={6} sm={12}>
+            <SiDiscord  className='mt-3' style={{height:"3rem",width:"2rem", color:"#00acee",marginRight:"2px",marginLeft:"10px"}}/>
+                <TextField
+                
+                  fullWidth
+                  id="discord"
+                  className='mt-2'
+                  style={{width:"22rem"}}
+                  label="Discord server link"
+                  name="discord"
+                  autoComplete="discord"
+                />
+              
+            </Grid>
             <Button
               type="submit"
               fullWidth
