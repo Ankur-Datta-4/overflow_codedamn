@@ -29,17 +29,17 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';//just in case
 import SearchIcon from '@mui/icons-material/Search';
 import { useSelector, useDispatch } from "react-redux";
 
-import {selectUserPhotoURL} from '../Features/User/userSlice'
+import { selectUserPhotoURL } from '../Features/User/userSlice'
 const Navi = () => {
 
-    const photoURL=useSelector(selectUserPhotoURL);
+    const photoURL = useSelector(selectUserPhotoURL);
 
     let [loggedIn, setLoggedIn] = useState(true);
     const styles =
     {
         image:
         {
-            width: "68px",
+            width: "70px",
             height: "60px",
             borderRadius: "50%",
             marginLeft: "200px",
@@ -57,7 +57,7 @@ const Navi = () => {
 
 
                     <Navbar.Brand style={{ margin: "0", padding: "0", color: "white", fontSize: "150%", marginRight: "30px" }} href="/">
-                        <img style={{ width: "80px", height: "80px" }} src={image} alt="" />
+                        <img style={{ width: "90px", height: "80px" }} src={image} alt="" />
                     </Navbar.Brand>
 
                     <Navbar.Toggle style={{ backgroundColor: "rgba(255 , 255 , 255 , 0.25)", color: "white" }} aria-controls="navbarScroll" />
@@ -85,18 +85,22 @@ const Navi = () => {
                             <Nav.Link style={{ verticalAlign: "baseline", display: loggedIn ? "block" : "none", width: "50px", height: "50px", padding: "0px", color: "white", marginRight: "5rem" }}
 
                                 href="/">
-                                <HomeIcon style={{ width: "50px", height: "50px" }} />
+                                <HomeIcon style={{ borderRadius: "30%", backgroundColor: "white", color: "black", width: "50px", height: "50px" }} />
                             </Nav.Link>
 
                             <Nav.Link style={{ verticalAlign: "baseline", display: loggedIn ? "block" : "none", width: "50px", height: "50px", padding: "0px", color: "white", marginRight: "5rem" }}
 
                                 href="/">
-                                <AddBoxIcon style={{ width: "50px", height: "50px" }} />
+                                <AddBoxIcon style={{ borderRadius: "30%", backgroundColor: "white", color: "black", width: "50px", height: "50px" }} />
                             </Nav.Link>
                             {/* <Nav.Link style={{ display: loggedIn ? "block" : "none", width: "50px", height: "50px", padding: "0", color: "white", marginRight: "23%" }} href="/about">ABOUT<FcAbout style={{ width: "50px", height: "50px" }} /></Nav.Link> */}
-                            <Nav.Link style={{ verticalAlign: "baseline", display: loggedIn ? "block" : "none", width: "50px", height: "50px", padding: "0", color: "white", marginRight: "5rem" }} href="/messenger"><MessageIcon style={{
-                                width: "45px", height: "45px"
-                            }} /></Nav.Link>
+
+
+                            <Nav.Link style={{ textAlign: "center", verticalAlign: "text-bottom", borderRadius: "30%", backgroundColor: "white", color: "black", verticalAlign: "baseline", display: loggedIn ? "block" : "none", width: "50px", height: "50px", padding: "0", marginRight: "5rem" }} href="#action2"><MessageIcon style={{
+                                padding: "3px",
+                                width: "50px", height: "50px"
+                            }} />
+                            </Nav.Link>
 
 
                             {/* <Nav.Link style={{ display: loggedIn ? "block" : "none", width: "50px", height: "50px", padding: "0", color: "white" }} href="#action2">
