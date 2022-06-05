@@ -5,7 +5,10 @@ const ChatSchema=mongoose.Schema({
         type:Boolean,
         default:false
     },
-    users:[String],
+    users:[{
+        name:String,
+        uid:String
+    }],
     recentMessage:{
         type:String,
     },

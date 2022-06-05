@@ -126,7 +126,7 @@ onClick={()=>navigate('/home')}>
                                         L O G I N
 
                                     </button>
-                                    </a>
+                                </a>
                            
 
                             </Nav.Link>

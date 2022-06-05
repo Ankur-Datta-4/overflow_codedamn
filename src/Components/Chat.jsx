@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 // import MetaTags from "react-meta-tags";
 // import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import './scss/_chat.scss';
 import { isEmpty, map } from "lodash";
 import moment from "moment";
 import {
@@ -45,17 +46,72 @@ import "react-perfect-scrollbar/dist/css/styles.css";
 
 //redux
 import { useSelector, useDispatch } from "react-redux";
-import { selectUserEmail, selectUserName, selectUserPhotoURL,setMessages,setChats,selectUserChats,selectUserMsgs,addMessageCur } from "../Features/User/userSlice";
+import { selectUserEmail, selectUserName, selectUserPhotoURL,setMessages,selectUserMsgs,addMessageCur, selectUserSlug } from "../Features/User/userSlice";
+import axios from "axios";
+const SERVERURL="http://localhost:1337/api"
+
 
 const Chat = props => {
   const dispatch = useDispatch();
   const photoURL=useSelector(selectUserPhotoURL)
   const name=useSelector(selectUserName)
-  const slug=useSelector(selectUserEmail)
-  const chats=useSelector(selectUserChats)
-  const messages=useSelector(selectUserMsgs)
+  const slug=useSelector(selectUserSlug)
+  // const chats=useSelector(selectUserChats)
+  const [chats,setChats]=useState()
+  
+  const [messages,setMessages]=useState()
 
 
+    function updateChats(){
+      if(slug!=="" && slug!==null){
+      axios.get(`${SERVERURL}/chat/u/${slug}`)
+            .then((res)=>{
+                if(!res.data.err){
+                    let temp=res.data.chats
+                    console.log(temp)//array
+                    temp.forEach((chat,index)=>{
+                        if(!chat.chatName){
+                            if(temp[index].users[0].uid===slug){
+                            temp[index]['chatName']=temp[index].users[1].name
+                            temp[index]['recvId']=temp[index].users[1].uid
+
+                        }else{
+                            temp[index]['chatName']=temp[index].users[0].name
+                            temp[index]['recvId']=temp[index].users[0].uid
+
+                        }
+                        }
+                    })
+                    
+                    if(!temp.chatName){
+                      console.log(temp.users)
+                      
+                    }
+                    setChats(temp);
+                }
+              }).catch((err)=>{
+                console.log(`Error while retreiving chats for ${slug}`);
+                console.log(err)
+            })
+          }
+    }
+
+    function updateMessages(convId){
+      axios.get(`${SERVERURL}/chat/${convId}`)
+      .then((res)=>{
+
+
+    
+          if(!res.data.err){
+              // state.msgs=res.data.msgs;
+              setMessages(res.data.msgs)
+            }
+            console.log(res.data.msgs)
+      }).catch((err)=>{
+          console.log(`Error while retreiving Messages for ${convId}`);
+          console.log(err)
+      })
+    }
   // const { chats, groups, contacts, messages } = useSelector(state => ({
   //   chats: state.chat.chats,
   //   messages: state.chat.messages,
@@ -86,12 +142,18 @@ const Chat = props => {
   useEffect(() => {
     //dispatch(onGetChats());
     
-    console.log(currentUser)
-    dispatch(setChats());
-    
-    dispatch(setMessages({convId:currentRoomId}))
-  }, [currentRoomId,currentUser]);
+    // console.log(currentUser)
+    // dispatch(setChats());
+    updateChats()
+    if(currentRoomId){
+      
+      // dispatch(setMessages({convId:currentRoomId}))
+      updateMessages(currentRoomId)
 
+    }
+  }, [currentRoomId]);
+  // setChats(useSelector(selectUserChats));
+  
   useEffect(() => {
     if (!isEmpty(messages)) scrollToBottom();
   }, [messages]);
@@ -124,10 +186,11 @@ const Chat = props => {
     setChat_Box_Username(name);
     setRecvId(id);
     setCurrentRoomId(roomId);
-    dispatch(setMessages({convId:roomId}));
+    // updateMessages(roomId)
+    // dispatch(setMessages({convId:roomId}));
   };
 
-  const addMessage = (roomId, sender) => {
+  const addMessage = () => {
     // const message = {
     //   id: Math.floor(Math.random() * 100),
     //   roomId,
@@ -139,14 +202,35 @@ const Chat = props => {
     // dispatch(onAddMessage(message));
 
     const msg={
-      senderId:slug,
-      recvId:recvId,
+      sender:{
+        uid:slug,
+        name
+      },
+      recv:{
+        uid:recvId,
+        name:Chat_Box_Username
+      },
       content:curMessage
     }
 
+    
+       //send message
+       axios.post(`${SERVERURL}/chat/${currentRoomId}`,msg)
+       .then((res)=>{
+           if(!res.data.err){
+               setMessages((prev)=>([...prev]))
+           }else{
+               setMessages([])
+           }
+       }).catch((err)=>{
+           console.log(`Error while sending Messages for ${currentRoomId}`);
+           console.log(err)
+       })
     console.log(`Message sent`);
     console.log(msg);
-    dispatch(addMessageCur({convId:roomId,msg}))
+
+    setcurMessage('')
+    // dispatch(addMessageCur({convId:roomId,msg}))
 
   };
 
@@ -160,7 +244,7 @@ const Chat = props => {
     const { key, value } = e;
     if (key === "Enter") {
       setcurMessage(value);
-      addMessage(currentRoomId, slug);
+      addMessage()
     }
   };
 
@@ -184,17 +268,17 @@ const Chat = props => {
 
   return (
     <React.Fragment>
-      <div className="page-content">
+      <div className="" style={{width:"100%",height:"80vh"}}>
         {/* <MetaTags>
           <title>Chat | Skote - React Admin & Dashboard Template</title>
         </MetaTags> */}
-        <Container fluid>
+        <Container >
           {/* Render Breadcrumb */}
           {/* <Breadcrumbs title="Skote" breadcrumbItem="Chat" /> */}
 
           <Row>
             <Col lg="12">
-              <div className="d-lg-flex">
+              <div className="d-lg-flex m-2">
                 <div className="chat-leftsidebar me-lg-4">
                   <div className="">
                     <div className="py-4 border-bottom">
@@ -297,31 +381,33 @@ const Chat = props => {
                               <PerfectScrollbar style={{ height: "410px" }}>
                                 {map(chats, chat => (
                                   <li
-                                    key={chat.id + false}
+                                    key={chat._id + false}
                                     className={
-                                      currentRoomId === chat.convId
+                                      currentRoomId === chat._id
                                         ? "active"
                                         : ""
                                     }
+
+                                    style={{background:'rgba(#556ee6,0.4)',cursor:'pointer'}}
                                   >
-                                    <Link
-                                      to="#"
+                                    
+                                      <div className="d-flex"
                                       onClick={() => {
                                         userChatOpen(
-                                          chat.convId,
+                                          chat.recvId,
                                           chat.chatName,
                                           false,
-                                          chat.convId
+                                          chat._id
                                         );
-                                      }}
-                                    >
-                                      <div className="d-flex">
+                                      }}>
                                         
                                         <div className="align-self-center me-3">
                                           <img
-                                            src={chat.photoURL}
+                                            src="https://robohash.org/123"
                                             className="rounded-circle avatar-xs"
                                             alt=""
+                                            width="48px"
+                                            height="48px"
                                           />
                                         </div>
 
@@ -333,11 +419,9 @@ const Chat = props => {
                                             {chat.recentMessage}
                                           </p>
                                         </div>
-                                        <div className="font-size-11">
-                                          12 min
-                                        </div>
+                                       
                                       </div>
-                                    </Link>
+                                    {/* </Link> */}
                                   </li>
                                 ))}
                               </PerfectScrollbar>
@@ -452,10 +536,10 @@ const Chat = props => {
                     </div>
 
                     <div>
-                      <div className="chat-conversation p-3">
+                      <div className="chat-conversation" >
                         <ul className="list-unstyled">
                           <PerfectScrollbar
-                            style={{ height: "470px" }}
+                            style={{ height: "55vh" }}
                             containerRef={ref => setMessageBox(ref)}
                           >
                             <li>
@@ -468,7 +552,7 @@ const Chat = props => {
                                 <li
                                   key={"test_k" + message._id}
                                   className={
-                                    message.senderId === currentUser.slug
+                                    message.senderId === slug
                                       ? "right"
                                       : ""
                                   }
@@ -580,7 +664,7 @@ const Chat = props => {
                               type="button"
                               color="primary"
                               onClick={() =>
-                                addMessage(currentRoomId, currentUser.name)
+                                addMessage()
                               }
                               className="btn btn-primary btn-rounded chat-send w-md "
                             >

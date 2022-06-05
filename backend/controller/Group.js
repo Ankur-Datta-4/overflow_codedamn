@@ -18,8 +18,9 @@ const createGroup=asyncWrap(async(req,res)=>{
     if(resGrp){
         console.log(resGrp)
         let grpUpdate={photoURL,name,gid:resGrp.slug}
-        let newGrp={...user.groups,grpUpdate}
-        await UserModel.findByIdAndUpdate(user._id,newGrp)
+        let newGrp=[...groups,grpUpdate]
+        console.log(newGrp)
+        await UserModel.findByIdAndUpdate(user._id,{groups:newGrp})
         res.status(200).json({err:false,resGrp})
     }else{
         res.status(400).json({err:false,msg:'Invalid data'})
@@ -72,7 +73,7 @@ const editGroup=asyncWrap(async(req,res)=>{
         let updatedGrp=await model.findOneAndUpdate({slug:id},{
             $push:{people:obj}},{new:true})
         let grpReqs={name:updatedGrp.name,gid:updatedGrp.slug,photoURL:updatedGrp.photoURL}
-        let newGrp={...user.groups,grpReqs}
+        let newGrp=[...user.groups,grpReqs]
         await UserModel.findByIdAndUpdate(user._id,{groups:newGrp})
 
     }else{

@@ -35,7 +35,16 @@ const userSlice=createSlice({
             axios.get(`${SERVERURL}/chat/u/${state.slug}`)
             .then((res)=>{
                 if(!res.data.err){
-                    state.chats=res.data.chats
+                    let temp=res.data.chats
+                    if(!temp.chatName){
+                        if(temp.users[0].uid===state.slug){
+                            temp['chatName']=temp.users[1].name
+                        }else{
+                            temp['chatName']=temp.users[0].name
+
+                        }
+                    }
+                    state.chats=temp;
                 }
             }).catch((err)=>{
                 console.log(`Error while retreiving chats for ${state.slug}`);

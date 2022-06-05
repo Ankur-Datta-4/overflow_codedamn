@@ -68,7 +68,7 @@ function App() {
           {/* <Route path="/messenger" element={<Messenger />} /> */}
           <Route path="/user/:id" element={<User />} />
           <Route path="/messenger" element={<Chat />} />
-          <Route path="/test" element={<Card post={recipeItem}/>} />
+          <Route path="/test" element={<Cardi post={recipeItem}/>} />
 
           <Route path="/user" element={<User/>}/>
           <Route path="/group/:id" element={<GroupProfile/>}/>

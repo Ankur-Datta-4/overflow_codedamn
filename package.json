@@ -32,6 +32,7 @@
     "react-tagsinput": "^3.19.0",
     "reactstrap": "^9.0.3",
     "responsive-navbar-react": "^1.2.1",
+    "sass": "^1.52.2",
     "vanta": "^0.5.22"
   },
   "devDependencies": {

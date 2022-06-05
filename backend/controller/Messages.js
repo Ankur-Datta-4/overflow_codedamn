@@ -8,15 +8,15 @@ const asyncWrap=require('../middleware/asyncHandler')
 //post
 const sendMessage=asyncWrap(async(req,res)=>{
     const {convId}=req.params
-    const {senderId,recvId,content}=req.body;
-    let obj={senderId,recvId,content,convId}
+    const {sender,recv,content}=req.body;
+    let obj={senderId:sender.uid,recvId:recv.uid,content,convId}
     const resMesg=await MessageModel.create(obj)
-    const user=await UserModel.findOne({userSlug:senderId})
+    // const user=await UserModel.findOne({userSlug:senderId})
     //next, update the last message of the conversation
-    const lastMesg=await ChatModel.findByIdAndUpdate(convId,{recentMessage:`${user.name}:${content}`},{new:true})
+    const lastMesg=await ChatModel.findByIdAndUpdate(convId,{recentMessage:`${sender.name}:${content}`},{new:true})
 
     if(resMesg && lastMesg){
-        return res.status(201).json({msg:`${convId}:sent to ${recvId}`,content})
+        return res.status(201).json({msg:`${convId}:sent to ${recv.name}`,content})
     }else{
         return res.status(404).json({err:true,msg:'couldnt find the conversation'})
     }
@@ -39,10 +39,16 @@ const recvMessage=asyncWrap(async(req,res)=>{
 const createChat=asyncWrap(async(req,res)=>{
     const {isGroupChat,users,chatName}=req.body;
     let obj={isGroupChat,users,chatName};
+    
+
     const resChat=await ChatModel.create(obj)
     //update in users chats
     
+
     if(resChat){
+        users.forEach(async(u)=>{
+            await UserModel.findOneAndUpdate({userSlug:u.uid},{$push:{chats:resChat._id}})  
+        })
         return res.status(201).json({err:false,msg:`created ${resChat._id} successfully`,id:resChat._id})
     }
 })
@@ -60,6 +66,13 @@ const addMember=asyncWrap(async(req,res)=>{
 
 const postRes= await ChatModel.findByIdAndUpdate(convId,{users,isGroupChat:true},{new:true})
 
+    users.forEach(async(u)=>{
+        let reqUser=await UserModel.findOne({userSlug:u.uid});
+        if(!reqUser.chats.find((e)=>e===convId)){
+            await UserModel.findOneAndUpdate({userSlug:u.uid},{$push:{chats:convId}})
+        }
+    })
+
 if(postRes){
     return res.status(202).json({err:false,msg:`Added users to ${convId}`,extra:postRes.users})
 }
@@ -68,9 +81,17 @@ if(postRes){
 // delete chat
 const deleteChat=asyncWrap(async(req,res)=>{
     const {convId}=req.params;
-    
+    const conv=await ChatModel.findById(convId)
+    let users=conv.users;
+
     await ChatModel.findByIdAndDelete(convId)
     const count=await MessageModel.deleteMany({convId})
+
+    users.forEach(async(u)=>{
+        await UserModel.findOneAndUpdate({userSlug:u.uid},{$pull:{chats:convId}})
+    })
+    //delete chat in all users as well
+
     return res.status(204).json({err:false,msg:`Deleted ${count} messages`})
 })
 
@@ -81,22 +102,14 @@ const getChats=asyncWrap(async(req,res)=>{
     const resUser=await UserModel.findOne({userSlug:id})
     if(!resUser) return res.status(404).json({err:true,msg:`${id} not found`})
     let chats=resUser.chats
-    const resChats=await ChatModel.find({_id:{$in:chats}})
+    let resChats=await ChatModel.find({_id:{$in:chats}})
     let k=resChats.length
     if(k>0){
         //for each chat, if users==2, chatName=Other user name
-            resChats.forEach(async(conv)=>{
-                if(conv.users.length===2){
-                    let index=conv.users[0]===id?1:0;
-                    let doc=await UserModel.findOne({userSlug:conv.users[index]})
+        
 
-                    conv['chatName']=doc.name;
-                    conv['recvId']=doc.userSlug
-                }
-            })
-
-
-        return res.status(200).json({err:false,chats:resChats})
+            return res.status(200).json({err:false,chats:resChats})
+        
     }else if(k===0){
         return res.status(200).json({err:false,msg:`No results found for ${id}`,chats:[]})
     }
