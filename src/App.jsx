@@ -23,6 +23,8 @@ import CreateGroup from './Pages/CreateGroup'
 import Infofed from './Components/Infofed';
 import { useSelector } from 'react-redux';
 import { selectUserName } from './Features/User/userSlice'
+import Search from './Components/Search';
+// import { Search } from '@mui/icons-material';
 
 
 function App() {
@@ -42,6 +44,7 @@ function App() {
   return (
     <div className="App">
 
+
       {/* <BrowserRouter>
         <Routes> */}
       {user === '' ? (
@@ -51,6 +54,7 @@ function App() {
             <Route path="/" element={<Landing />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<SignUp />} />
+            <Route path="/test" element={<Search />} />
 
           </Routes>
         </BrowserRouter>
@@ -73,6 +77,7 @@ function App() {
             <Route path="/user" element={<User />} />
             <Route path="/group" element={<GroupProfile />} />
             <Route path="/create-group" element={<CreateGroup />} />
+
 
           </Routes>
         </BrowserRouter>
