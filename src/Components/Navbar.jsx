@@ -30,20 +30,21 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';//just in case
 import SearchIcon from '@mui/icons-material/Search';
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from 'react-router-dom';
-
-import { selectUserPhotoURL,selectUserSlug } from '../Features/User/userSlice'
+import Search from './Search';
+import { selectUserPhotoURL, selectUserSlug } from '../Features/User/userSlice'
+import SearchMenu from './Search';
 const Navi = () => {
 
     const photoURL = useSelector(selectUserPhotoURL);
     const userSlug = useSelector(selectUserSlug);
-    let [loggedIn, setLoggedIn] = useState(userSlug!=="");
-    const navigate=useNavigate()
-    useEffect(()=>{
-        setLoggedIn(userSlug!=="");
-    },[userSlug])
+    let [loggedIn, setLoggedIn] = useState(userSlug !== "");
+    const navigate = useNavigate()
+    useEffect(() => {
+        setLoggedIn(userSlug === "");
+    }, [userSlug])
 
 
-    
+
     const styles =
     {
         image:
@@ -57,7 +58,7 @@ const Navi = () => {
     }
 
     return (
-        <div className="navbar" style={{ width: "100vw", zIndex: "5", position: "sticky", padding: "0", top: "0" }}>
+        <div className="navbar mb-10" style={{ width: "100vw", zIndex: "5", position: "fixed", padding: "0", top: "0" }}>
             {/* <Navbar {...props} /> */}
 
 
@@ -65,26 +66,27 @@ const Navi = () => {
                 <Container fluid>
 
 
-                    <Navbar.Brand style={{ margin: "0", padding: "0", color: "white", fontSize: "150%", marginRight: "2rem" }} onClick={()=>navigate('/')}>
-                        <img style={{ width: "5rem", height: "4.5rem" }} src={image} alt="" />
+                    <Navbar.Brand style={{ margin: "0", padding: "0", color: "white", fontSize: "150%", marginRight: "2rem" }} onClick={() => navigate('/')}>
+                        <img style={{ backgroundColor: "black", width: "5rem", height: "4.5rem" }} src={image} alt="" />
                     </Navbar.Brand>
-
+                    <Search />
                     <Navbar.Toggle style={{ backgroundColor: "rgba(255 , 255 , 255 , 0.25)", color: "white" }} aria-controls="navbarScroll" />
 
                     <Navbar.Collapse id="navbarScroll">
                         <Form className="d-flex" style={{ marginRight: "10%" }}>
-                            <FormControl
+                            {/* <FormControl
                                 style={{ display: loggedIn ? "block" : "none", width: "300px" }}
                                 type="search"
                                 placeholder="Search"
                                 className="me-2"
                                 aria-label="Search"
 
-                            />
+                            /> */}
 
                             {/* <FcSearch style={{ width: "23%", height: "23%", backgroundColor: "whitesmoke", borderRadius: "10px", marginRight: "10%" }} /> */}
-                            <Button style={{ display: loggedIn ? "block" : "none", marginLeft: "1%" }} variant="outline-light"><SearchIcon /></Button>
+                            {/* <Button style={{ display: loggedIn ? "block" : "none", marginLeft: "1%" }} variant="outline-light"><SearchIcon /></Button> */}
                         </Form>
+
                         <Nav
 
                             className="me-auto my-2 my-lg-0"
@@ -93,17 +95,17 @@ const Navi = () => {
                         >
                             <Nav.Link style={{ verticalAlign: "baseline", display: loggedIn ? "block" : "none", width: "3.5rem", height: "3.1rem", padding: "0px", color: "white", marginRight: "30%" }}
 
-onClick={()=>navigate('/home')}>
+                                onClick={() => navigate('/home')}>
                                 <HomeIcon style={{ borderRadius: "30%", backgroundColor: "white", color: "black", width: "3.5rem", height: "3.1rem" }} />
                             </Nav.Link>
 
-                            <Nav.Link style={{ verticalAlign: "baseline", display: loggedIn ? "block" : "none", width: "3.5rem", height: "3.1rem", padding: "0px", color: "white", marginRight: "30%" }} onClick={()=>navigate('/create-group')}>
-                            <AddBoxIcon style={{ borderRadius: "30%", backgroundColor: "white", color: "black", width: "3.5rem", height: "3.1rem" }} />
+                            <Nav.Link style={{ verticalAlign: "baseline", display: loggedIn ? "block" : "none", width: "3.5rem", height: "3.1rem", padding: "0px", color: "white", marginRight: "30%" }} onClick={() => navigate('/create-group')}>
+                                <AddBoxIcon style={{ borderRadius: "30%", backgroundColor: "white", color: "black", width: "3.5rem", height: "3.1rem" }} />
                             </Nav.Link>
                             {/* <Nav.Link style={{ display: loggedIn ? "block" : "none", width: "50px", height: "50px", padding: "0", color: "white", marginRight: "23%" }} href="/about">ABOUT<FcAbout style={{ width: "50px", height: "50px" }} /></Nav.Link> */}
 
 
-                            <Nav.Link style={{ textAlign: "center", verticalAlign: "text-bottom", borderRadius: "30%", backgroundColor: "white", color: "black", verticalAlign: "baseline", display: loggedIn ? "block" : "none", width: "3.2rem", height: "3.2rem", padding: "0", marginRight: "30%" }} onClick={()=>navigate('/messenger')}><MessageIcon style={{
+                            <Nav.Link style={{ textAlign: "center", verticalAlign: "text-bottom", borderRadius: "30%", backgroundColor: "white", color: "black", verticalAlign: "baseline", display: loggedIn ? "block" : "none", width: "3.2rem", height: "3.2rem", padding: "0", marginRight: "30%" }} onClick={() => navigate('/messenger')}><MessageIcon style={{
                                 padding: "0.3rem",
                                 width: "3.2rem", height: "3.2rem"
                             }} />
@@ -115,12 +117,12 @@ onClick={()=>navigate('/home')}>
                               
 
                             </Nav.Link> */}
-                            <Avatar style={{ verticalAlign: "baseline", display: loggedIn ? "block" : "none" ,cursor:"pointer"}} alt="Remy Sharp" src={photoURL} onClick={()=>navigate(`/user/${userSlug}`)}/>
+                            <Avatar style={{ verticalAlign: "baseline", display: loggedIn ? "block" : "none", cursor: "pointer" }} alt="Remy Sharp" src={photoURL} onClick={() => navigate(`/user/${userSlug}`)} />
 
                             {/* <Nav.Link style={{ display: !loggedIn ? "block" : "none", width: "50px", height: "50px", padding: "0", color: "white", marginRight: "23%" }} href="/about"></Nav.Link> */}
                             <Nav.Link style={{ display: !loggedIn ? "block" : "none", width: "50px", height: "50px", padding: "0", color: "white" }} href="#action2">
 
-                              
+
                                 <a href="/login">
                                     <button style={{ position: "absolute", borderRadius: "16px", fontSize: "25px", fontWeight: "600", paddingBottom: "0.3rem", paddingTop: "0.3rem", right: "20px", paddingLeft: "80px", paddingRight: "80px", background: "linear-gradient(45deg, #00B5B0, blue)", color: "white" }} >
                                         L O G I N
