@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import logo from './logo.svg'
-
+import pic from '../src/Components/logo.png'
 import {
   BrowserRouter,
   Routes,
@@ -15,10 +15,8 @@ import PostCompi from './Components/PostComponent';
 import User from './Pages/User';
 import Home from './Pages/Home'
 import Messenger from './Pages/Messenger';
+import Card from './Components/Card';
 function App() {
-
-
-
   return (
     <div className="App">
       <Navi />
@@ -29,8 +27,8 @@ function App() {
           <Route path="/register" element={<SignUp />} />
           <Route path="/login/success" element={<Home />} />
           <Route path="/messenger" element={<Messenger />} />
+          <Route path="/user" element={<User />} />
 
-          <Route path="/user" element={<User/>}/>
         </Routes>
       </BrowserRouter>
     </div>
