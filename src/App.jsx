@@ -14,7 +14,7 @@ import SignUp from './Pages/Register';
 import PostCompi from './Components/PostComponent';
 import User from './Pages/User';
 import Home from './Pages/Home'
-import Messenger from './Pages/Messenger';
+// import Messenger from './Pages/Messenger';
 import Card from './Components/Card';
 import Chat from './Components/Chat';
 
