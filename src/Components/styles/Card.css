@@ -1,4 +1,4 @@
-.card {
+.cardi {
 	background-color: whitesmoke;
 	color: #272727;
 	padding: 20px;
@@ -9,7 +9,7 @@
 	transition: 200ms;
 }
 
-.card:hover {
+.cardi:hover {
 	transition: 200ms;
 	/* border: 3px; */
 	/* border-color: tomato; */

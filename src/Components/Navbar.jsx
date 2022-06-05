@@ -57,22 +57,22 @@ const Navi = () => {
     }
 
     return (
-        <div className="navbar" style={{ width: "100%", zIndex: "5", position: "sticky", padding: "0", top: "0" }}>
+        <div className="navbar" style={{ width: "100vw", zIndex: "5", position: "sticky", padding: "0", top: "0" }}>
             {/* <Navbar {...props} /> */}
 
 
-            <Navbar style={{ width: "100%", backgroundColor: "#000", color: "white", paddingBottom: "10px" }} expand="md">
+            <Navbar style={{ width: "100vw", backgroundColor: "#000", color: "white", paddingBottom: "2px" }} expand="md">
                 <Container fluid>
 
 
-                    <Navbar.Brand style={{ margin: "0", padding: "0", color: "white", fontSize: "150%", marginRight: "30px" }} href="/">
-                        <img style={{ width: "90px", height: "80px" }} src={image} alt="" />
+                    <Navbar.Brand style={{ margin: "0", padding: "0", color: "white", fontSize: "150%", marginRight: "2rem" }} href="/">
+                        <img style={{ width: "5rem", height: "4.5rem" }} src={image} alt="" />
                     </Navbar.Brand>
 
                     <Navbar.Toggle style={{ backgroundColor: "rgba(255 , 255 , 255 , 0.25)", color: "white" }} aria-controls="navbarScroll" />
 
                     <Navbar.Collapse id="navbarScroll">
-                        <Form className="d-flex">
+                        <Form className="d-flex" style={{ marginRight: "10%" }}>
                             <FormControl
                                 style={{ display: loggedIn ? "block" : "none", width: "300px" }}
                                 type="search"
@@ -83,31 +83,31 @@ const Navi = () => {
                             />
 
                             {/* <FcSearch style={{ width: "23%", height: "23%", backgroundColor: "whitesmoke", borderRadius: "10px", marginRight: "10%" }} /> */}
-                            <Button style={{ display: loggedIn ? "block" : "none", marginLeft: "1%", marginRight: "15%" }} variant="outline-light"><SearchIcon /></Button>
+                            <Button style={{ display: loggedIn ? "block" : "none", marginLeft: "1%" }} variant="outline-light"><SearchIcon /></Button>
                         </Form>
                         <Nav
 
                             className="me-auto my-2 my-lg-0"
-                            style={{ marginLeft: "500px", maxHeight: '100px', color: "white" }}
+                            style={{ display: "flex", flexDirection: "row", marginLeft: "20%", maxHeight: '5rem', color: "white" }}
                             navbarScroll
                         >
-                            <Nav.Link style={{ verticalAlign: "baseline", display: loggedIn ? "block" : "none", width: "50px", height: "50px", padding: "0px", color: "white", marginRight: "5rem" }}
+                            <Nav.Link style={{ verticalAlign: "baseline", display: loggedIn ? "block" : "none", width: "3.5rem", height: "3.1rem", padding: "0px", color: "white", marginRight: "30%" }}
 
                                 href="/">
-                                <HomeIcon style={{ borderRadius: "30%", backgroundColor: "white", color: "black", width: "50px", height: "50px" }} />
+                                <HomeIcon style={{ borderRadius: "30%", backgroundColor: "white", color: "black", width: "3.5rem", height: "3.1rem" }} />
                             </Nav.Link>
 
-                            <Nav.Link style={{ verticalAlign: "baseline", display: loggedIn ? "block" : "none", width: "50px", height: "50px", padding: "0px", color: "white", marginRight: "5rem" }}
+                            <Nav.Link style={{ verticalAlign: "baseline", display: loggedIn ? "block" : "none", width: "3.5rem", height: "3.1rem", padding: "0px", color: "white", marginRight: "30%" }}
 
-                                href="/create-group">
-                                <AddBoxIcon style={{ borderRadius: "30%", backgroundColor: "white", color: "black", width: "50px", height: "50px" }} />
+                                href="/">
+                                <AddBoxIcon style={{ borderRadius: "30%", backgroundColor: "white", color: "black", width: "3.5rem", height: "3.1rem" }} />
                             </Nav.Link>
                             {/* <Nav.Link style={{ display: loggedIn ? "block" : "none", width: "50px", height: "50px", padding: "0", color: "white", marginRight: "23%" }} href="/about">ABOUT<FcAbout style={{ width: "50px", height: "50px" }} /></Nav.Link> */}
 
 
-                            <Nav.Link style={{ textAlign: "center", verticalAlign: "text-bottom", borderRadius: "30%", backgroundColor: "white", color: "black", verticalAlign: "baseline", display: loggedIn ? "block" : "none", width: "50px", height: "50px", padding: "0", marginRight: "5rem" }} href="#action2"><MessageIcon style={{
-                                padding: "3px",
-                                width: "50px", height: "50px"
+                            <Nav.Link style={{ textAlign: "center", verticalAlign: "text-bottom", borderRadius: "30%", backgroundColor: "white", color: "black", verticalAlign: "baseline", display: loggedIn ? "block" : "none", width: "3.2rem", height: "3.2rem", padding: "0", marginRight: "30%" }} href="#action2"><MessageIcon style={{
+                                padding: "0.3rem",
+                                width: "3.2rem", height: "3.2rem"
                             }} />
                             </Nav.Link>
 
