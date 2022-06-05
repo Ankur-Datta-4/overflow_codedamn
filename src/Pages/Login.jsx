@@ -103,7 +103,7 @@ export default function Login() {
         >
 
           <div className='' style={{ textAlign: "center" }}>
-            <Typography component="h1" variant="h1" style={{ marginBottom: "15%", marginLeft: "0.0001%" }}>
+            <Typography component="h2" variant="h2" style={{ marginBottom: "15%", marginLeft: "0.0001%" }}>
               Sign in
             </Typography>
             <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>

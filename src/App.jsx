@@ -57,13 +57,12 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<SignUp />} />
             {/* <Route path="/test" element={<Search />} /> */}
-            <Route path="/test" element={<Feed />} />
 
           </Routes>
         </BrowserRouter>
       ) : (
-
-
+        
+        
         <BrowserRouter>
           <Navi />
           <Routes>
@@ -71,13 +70,14 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<SignUp />} />
             
-          <Route path="/home" element={<Home />} />
+          {/* <Route path="/home" element={<Home />} /> */}
           {/* <Route path="/messenger" element={<Messenger />} /> */}
           <Route path="/user/:id" element={<User />} />
           <Route path="/messenger" element={<Chat />} />
-          <Route path="/test" element={<Cardi post={recipeItem}/>} />
+          <Route path="/home" element={<Cardi post={recipeItem}/>} />
 
-          <Route path="/user" element={<User/>}/>
+          {/* <Route path="/user" element={<User/>}/> */}
+        <Route path="/test" element={<Feed />} />
           <Route path="/group/:id" element={<GroupProfile/>}/>
           <Route path="/create-group" element={<CreateGroup/>}/>
           

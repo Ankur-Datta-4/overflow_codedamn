@@ -31,7 +31,7 @@ import { CardActionArea } from '@mui/material';
 import { useSelector } from "react-redux";
 import { selectUserSlug } from "../Features/User/userSlice";
 import axios from "axios";
-
+import { useNavigate } from "react-router-dom";
 const SERVERURL="http://localhost:1337/api"
 
 export default function User()
@@ -44,6 +44,7 @@ export default function User()
     const [user,setUser]=useState()
     const [index,setIndex]=useState(0)
     const [gitUsername,setGitUsername]=useState('')
+    const navigate=useNavigate()
     useEffect(()=>{
         axios.get(`${SERVERURL}/user/ankurr2002gmailcom`)
         .then((res)=>{
@@ -193,7 +194,7 @@ export default function User()
                                                 <h5 className="text-truncate font-size-15 line-3 m-2">
                                                 <Link
                                                     style={{textDecoration:"none"}}
-                                                    to={`/groups/${gid}`}
+                                                    to={`/group/${gid}`}
                                                     className="text-dark"
                                                     xl={2}
                                                 >
@@ -224,8 +225,8 @@ export default function User()
                     
                     <Row className="mt-2">
                         <Card>
-                            <CardBody>
-                                <h3 style={{textAlign:"center"}}>POSTS</h3>
+                            <CardBody onClick={()=>navigate('/test')}>
+                                <h3 style={{textAlign:"center",cursor:'pointer'}}>POSTS</h3>
                             </CardBody>
                             <Row mr={4} mb={5}>                            
                             {
