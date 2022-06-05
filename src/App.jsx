@@ -19,6 +19,19 @@ import Card from './Components/Card';
 import Chat from './Components/Chat';
 
 function App() {
+
+
+  const recipeItem = {
+    recipeAuthor: "Efecan",
+    title: "Avokado Ezmeli Taco",
+    date: "8 Haziran 2021, Salı",
+    image: pic,
+    description:
+      "Bu kremsi ve baharatlı avokado sosu, günlük taco'larınızı hazırlamak için harika seçeneklerden biri. Geleneksel olarak flautas veya taquitos ile servis edilir, ancak bazı vegan enchiladalara da harika bir katkı sağlar.",
+  };
+
+  const like = 193;
+  const isLiked = true;
   return (
     <div className="App">
       <Navi />
@@ -31,6 +44,10 @@ function App() {
           {/* <Route path="/messenger" element={<Messenger />} /> */}
           <Route path="/user" element={<User />} />
           <Route path="/messenger" element={<Chat />} />
+          <Route path="/test" element={<Card
+            post={recipeItem}
+
+          />} />
 
         </Routes>
       </BrowserRouter>

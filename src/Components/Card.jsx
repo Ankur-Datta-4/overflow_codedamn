@@ -2,9 +2,8 @@
 import React, { useState } from "react";
 import "../Components/styles/Card.css";
 import food from '../Components/logo.png'
-const Card = (props) => {
+const Card = ({ post: props }) => {
     console.log(props);
-
     let [like, setLike] = useState(false);
 
     return (
@@ -12,7 +11,7 @@ const Card = (props) => {
         <div style={{ maxWidth: "400px" }} className="card">
             <div className="card-header">
                 <div className="profile">
-                    <span className="letter">{props.author[0]}</span>
+                    <span className="letter">Name</span>
                 </div>
                 <div className="card-title-group">
                     <h5 className="card-title">{props.title}</h5>
@@ -48,10 +47,6 @@ const Card = (props) => {
                         <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                     </svg>
                 </div>
-
-
-
-
 
             </div>
         </div>
