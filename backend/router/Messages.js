@@ -12,6 +12,6 @@ router.route('/:convId')
     .delete(deleteChat)
 
 
-router.route('/:id')
+router.route('/u/:id')
     .get(getChats)
 module.exports=router

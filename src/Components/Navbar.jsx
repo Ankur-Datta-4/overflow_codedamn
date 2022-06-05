@@ -27,9 +27,12 @@ import AddBoxIcon from '@mui/icons-material/AddBox';//plus icon
 import MessageIcon from '@mui/icons-material/Message';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';//just in case
 import SearchIcon from '@mui/icons-material/Search';
+import { useSelector, useDispatch } from "react-redux";
 
+import {selectUserPhotoURL} from '../Features/User/userSlice'
 const Navi = () => {
 
+    const photoURL=useSelector(selectUserPhotoURL);
 
     let [loggedIn, setLoggedIn] = useState(true);
     const styles =
@@ -91,7 +94,7 @@ const Navi = () => {
                                 <AddBoxIcon style={{ width: "50px", height: "50px" }} />
                             </Nav.Link>
                             {/* <Nav.Link style={{ display: loggedIn ? "block" : "none", width: "50px", height: "50px", padding: "0", color: "white", marginRight: "23%" }} href="/about">ABOUT<FcAbout style={{ width: "50px", height: "50px" }} /></Nav.Link> */}
-                            <Nav.Link style={{ verticalAlign: "baseline", display: loggedIn ? "block" : "none", width: "50px", height: "50px", padding: "0", color: "white", marginRight: "5rem" }} href="#action2"><MessageIcon style={{
+                            <Nav.Link style={{ verticalAlign: "baseline", display: loggedIn ? "block" : "none", width: "50px", height: "50px", padding: "0", color: "white", marginRight: "5rem" }} href="/messenger"><MessageIcon style={{
                                 width: "45px", height: "45px"
                             }} /></Nav.Link>
 
@@ -101,7 +104,7 @@ const Navi = () => {
                               
 
                             </Nav.Link> */}
-                            <Avatar style={{ verticalAlign: "baseline", display: loggedIn ? "block" : "none" }} alt="Remy Sharp" src="" />
+                            <Avatar style={{ verticalAlign: "baseline", display: loggedIn ? "block" : "none" }} alt="Remy Sharp" src={photoURL} />
 
                             {/* <Nav.Link style={{ display: !loggedIn ? "block" : "none", width: "50px", height: "50px", padding: "0", color: "white", marginRight: "23%" }} href="/about"></Nav.Link> */}
                             <Nav.Link style={{ display: !loggedIn ? "block" : "none", width: "50px", height: "50px", padding: "0", color: "white" }} href="#action2">

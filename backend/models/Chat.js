@@ -12,6 +12,8 @@ const ChatSchema=mongoose.Schema({
     chatName:String,
     photoURL:String
 
+},{
+    timestamps:true
 })
 
 const ChatModel=mongoose.model('Chat',ChatSchema)
