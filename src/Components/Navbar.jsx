@@ -37,7 +37,6 @@ const Navi = () => {
     const photoURL = useSelector(selectUserPhotoURL);
     const userSlug = useSelector(selectUserSlug);
     let [loggedIn, setLoggedIn] = useState(userSlug!=="");
-    const navigate=useNavigate()
     useEffect(()=>{
         setLoggedIn(userSlug!=="");
     },[userSlug])
@@ -99,7 +98,7 @@ const Navi = () => {
 
                             <Nav.Link style={{ verticalAlign: "baseline", display: loggedIn ? "block" : "none", width: "3.5rem", height: "3.1rem", padding: "0px", color: "white", marginRight: "30%" }}
 
-                                href="/">
+                                href="/create-group">
                                 <AddBoxIcon style={{ borderRadius: "30%", backgroundColor: "white", color: "black", width: "3.5rem", height: "3.1rem" }} />
                             </Nav.Link>
                             {/* <Nav.Link style={{ display: loggedIn ? "block" : "none", width: "50px", height: "50px", padding: "0", color: "white", marginRight: "23%" }} href="/about">ABOUT<FcAbout style={{ width: "50px", height: "50px" }} /></Nav.Link> */}
@@ -123,12 +122,12 @@ const Navi = () => {
                             <Nav.Link style={{ display: !loggedIn ? "block" : "none", width: "50px", height: "50px", padding: "0", color: "white" }} href="#action2">
 
                               
-
-                                    <button style={{ position: "absolute", borderRadius: "16px", fontSize: "25px", fontWeight: "600", paddingBottom: "0.3rem", paddingTop: "0.3rem", right: "20px", paddingLeft: "80px", paddingRight: "80px", background: "linear-gradient(45deg, #00B5B0, blue)", color: "white" }} onClick={()=>navigate('/login')}>
+                                <a href="/login">
+                                    <button style={{ position: "absolute", borderRadius: "16px", fontSize: "25px", fontWeight: "600", paddingBottom: "0.3rem", paddingTop: "0.3rem", right: "20px", paddingLeft: "80px", paddingRight: "80px", background: "linear-gradient(45deg, #00B5B0, blue)", color: "white" }} >
                                         L O G I N
 
                                     </button>
-
+                                    </a>
                            
 
                             </Nav.Link>
