@@ -21,11 +21,13 @@ import { GrTwitter } from 'react-icons/gr';
 import { RiInstagramFill } from 'react-icons/ri';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import { SiDiscord } from 'react-icons/si';
-
-import {    Badge} from "reactstrap"
+import { useSelector } from 'react-redux';
+import { selectUserName } from '../Features/User/userSlice';
+import {Badge} from "reactstrap"
 
 import 'react-tagsinput/react-tagsinput.css'
 import TagsInput from 'react-tagsinput'
+import { useNavigate } from 'react-router-dom';
 
 function Copyright(props) {
   return (
@@ -43,6 +45,11 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function GroupCreate() {
+
+    const user=useSelector(selectUserName)
+    const navigate=useNavigate()
+   
+   
 
     const[tags,setTags]=useState(['react'])
     function handleChange(tags){

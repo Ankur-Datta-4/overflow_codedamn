@@ -67,7 +67,7 @@ export default function Login() {
           if(res.data.isPresent){
             // ToastShow('Login','Login Successfull','success')
             // toast.success("Login Successful")
-            navigate('/login/success')
+            navigate(`/user/${obj2.slug}`)
           }else{
             // toast.error("Login failed")
             navigate('/register')

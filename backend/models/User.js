@@ -30,7 +30,12 @@ const UserSchema=mongoose.Schema({
     posts:[
         String
     ],
-    chats:[String]//convIds
+    chats:[String],//convIds,
+    groups:[{
+        name:String,
+        photoURL:String,
+        gid:String
+    }]
 })
 
 UserSchema.pre('validate',function(next){

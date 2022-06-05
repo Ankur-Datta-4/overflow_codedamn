@@ -20,7 +20,7 @@ import {
 import GitHubCalendar from 'react-github-calendar';
 import { BsLinkedin } from 'react-icons/bs';
 import { BsGithub } from 'react-icons/bs';
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Avatar from '@mui/material/Avatar';
 import TagsInput from 'react-tagsinput'
 
@@ -28,16 +28,52 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
+import { useSelector } from "react-redux";
+import { selectUserSlug } from "../Features/User/userSlice";
+import axios from "axios";
 
+const SERVERURL="http://localhost:1337/api"
 
 export default function User()
 {
+    // const {id}=useParams()
+    const id=`ankurr2002gmailcom`
+    const slug=useSelector(selectUserSlug)
+    const [privilege,setPrivilege]=useState(id===slug)
     const[tags,setTags]=useState(['react','java','node','abcde'])
+    const [user,setUser]=useState()
+    const [index,setIndex]=useState(0)
+    const [gitUsername,setGitUsername]=useState('')
+    useEffect(()=>{
+        axios.get(`${SERVERURL}/user/ankurr2002gmailcom`)
+        .then((res)=>{
+            if(!res.data.err){
+                if(res.data.user && res.data.user.links[0].provider==="github"){
+                    setIndex(1);
+                    parseGit(res.data.user.links[0].url)
+                }else if(res.data.user){
+                    setIndex(0);
+                    parseGit(res.data.user.links[1].url)
+
+                }
+                setUser(res.data.user)
+            }
+        }).catch((e)=>{
+            console.log(`Error fetching ${id}`)
+            console.log(e)
+        })
+    },[])
 
     function handleChange(tags){
         setTags(tags)
     }
+    function parseGit(link){
+        console.log(link)
+        let arr=link.split('/');
+        console.log(arr[arr.length-1])
+        setGitUsername(arr[arr.length-1])
 
+    }
     let ar=[{"photourl":"https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2","url":"/groups","name":"JSdddddddddsdjnc sdddddddd"},{"photourl":"https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2","url":"/groups","name":"JSdddddddddsdjnc sdddddddd"},{"photourl":"https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2","url":"/groups","name":"JSdddddddddsdjncsdddddddd"},{"photourl":"https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2","url":"/groups","name":"JSdddddddddsdjnc sdddddddd"}]
     
     let postsComp=[{"date":"4 June 2022","Url":"https://pbs.twimg.com/profile_images/1479443900368519169/PgOyX1vt_400x400.jpg","content":"This is my first post xD .. Please do comment and share In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available."},{"date":"4 June 2022","Url":"https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2","content":"This is my first post xD .. Please do comment and share "},{"date":"4 June 2022","Url":"https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2","content":"This is my first post xD .. Please do comment and share In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available."},{"date":"4 June 2022","Url":"https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2","content":"This is my first post xD .. Please do comment and share "}]
@@ -61,7 +97,7 @@ export default function User()
 
     return(
 
-            <div className="page-content" style={{height:"100%",borderRadius:"45px 45px 0px 0px"}}>
+        user?( <div className="page-content" style={{height:"100%",borderRadius:"45px 45px 0px 0px"}}>
                 <Container  style={{height:"100%",position:"relative"}}>
                     <Row className="mt-3">
                         <Card className="overflow-hidden" >
@@ -69,7 +105,7 @@ export default function User()
                             <Row style={{  }}  >
                                 <Col xs="5">
                                 <img 
-                                    src="https://media.istockphoto.com/vectors/abstract-blue-vector-background-with-stripes-can-be-used-for-cover-vector-id1270261573?k=20&m=1270261573&s=612x612&w=0&h=8KkJd1DCgwZxMyh3AYFSzfuTRphs3mLuEMYMmUpmsmQ="
+                                    src="https://picsum.photos/id/200/1440/128"
                                     style={{borderRadius:"15px 15px 0px 0px",height:"8rem",width:"90rem",zIndex:"-1",margin:"0 auto"}}
                                 />
                                 </Col>
@@ -81,7 +117,7 @@ export default function User()
                                 <Col  sm="4">
                                 <div className="avatar-xs profile-user-wid mb-4">
                                     <img
-                                    src="https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                                    src={user.photoURL}
                                     alt=""
                                     style={{display:"flex",justifyContent:"center",left:"45%",position:"absolute",height:"7rem",width:"7rem",alignItems:"center", top:"4rem",zIndex:"2"}}
                                     className="img-thumbnail rounded-circle "
@@ -93,12 +129,11 @@ export default function User()
                             <CardBody>
                                 <Row>
                                     <Col style={{textAlign:"center"}} >
-                                        <h4 >DARSHAN V</h4>
-                                        <h6 className="text-muted">In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.
-                                        </h6>
+                                        <h4 >{user.name}</h4>
+                                        <h6 className="text-muted">{user.bio}</h6>
                                         {/* <h2><BsGithub src="www.google.com"/> <BsLinkedin/></h2> */}
-                                        <a href="https://www.linkedin.com"><BsLinkedin className='mt-1' style={{height:"30px",width:"30px", color:"#0A66C2",marginRight:"1rem"}}/></a>              
-                                        <a href="https://www.github.com" style={{color:"black"}}><BsGithub className='mt-1' style={{height:"30px",width:"30px",marginRight:"2px"}}/> </a>
+                                        <a href={user.links[index].url}><BsLinkedin className='mt-1' style={{height:"30px",width:"30px", color:"#0A66C2",marginRight:"1rem"}}/></a>              
+                                        <a href={user.links[1-index].url} style={{color:"black"}}><BsGithub className='mt-1' style={{height:"30px",width:"30px",marginRight:"2px"}}/> </a>
 
                                         <h2></h2>
                                     </Col>
@@ -117,7 +152,7 @@ export default function User()
                             <CardBody>   
                             <h3>Interests</h3>                        
                             {
-                                tags.map((e)=>{
+                                user.interests.map((e)=>{
                                     return(
                                         <Badge pill className="badge-soft-success me-1">{e}</Badge>
                                     )
@@ -138,7 +173,7 @@ export default function User()
                                     ar.map((e)=>(<li>{e}</li>))
                                 } */}
                                 {
-                                    ar.map(({photourl,url,name})=>(
+                                  user.groups && user.groups.map(({photoURL,name,gid})=>(
                                       
                                         <Col  style={{display:"flex",justifyContent:"center"}} className="mt-3 overflow-hidden group">
                                             <Row >
@@ -151,14 +186,14 @@ export default function User()
                                                     style={{height:"50px",width:"50px"}}
                                                     alt=""
                                                 /> */}
-                                                <Avatar style={{marginRight:"20px"}} alt="Remy Sharp" src={photourl} className="mr-2" />
+                                                <Avatar style={{marginRight:"20px"}} alt="Remy Sharp" src={photoURL} className="mr-2" />
                                             </Col>
                                             <Col xs={8}>
                                             <div className="flex-grow-1 overflow-hidden">
                                                 <h5 className="text-truncate font-size-15 line-3 m-2">
                                                 <Link
                                                     style={{textDecoration:"none"}}
-                                                    to={`/groups/${url}`}
+                                                    to={`/groups/${gid}`}
                                                     className="text-dark"
                                                     xl={2}
                                                 >
@@ -181,7 +216,7 @@ export default function User()
                                 </CardBody>
                                 <hr></hr>
                                 <h3>Github</h3>
-                                <GitHubCalendar style={{justifyContent:"center"}} username="ankur-datta-4" transformData={selectLastHalfYear}  />
+                                <GitHubCalendar style={{justifyContent:"center"}} username={gitUsername} transformData={selectLastHalfYear}  />
                                 {/* <hr></hr> */}
                             </Card>
                         </Col>
@@ -234,5 +269,6 @@ export default function User()
                     </Row>
                 </Container>
             </div>
+        ):<div>Loading...</div>
     )
 }
