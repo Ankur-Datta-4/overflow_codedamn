@@ -58,7 +58,7 @@ const Navi = () => {
     }
 
     return (
-        <div className="navbar" style={{ width: "100vw", zIndex: "5", position: "fixed", padding: "0", top: "0" }}>
+        <div className="navbar mb-10" style={{ width: "100vw", zIndex: "5", position: "fixed", padding: "0", top: "0" }}>
             {/* <Navbar {...props} /> */}
 
 

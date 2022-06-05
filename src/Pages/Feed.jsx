@@ -39,7 +39,7 @@ export default function Feed()
         <React.Fragment>
             <div className="page-content">
                 <Container >
-                    <Row style={{position:"relative"}} className="mt-3">
+                    <Row style={{position:"relative",marginTop:"6rem"}} className="" >
                         <Col md={3} xs={12} style={{position:"sticky",position:"-webkit-sticky",left:"7%",top:"17%"}}>
                   
                             <Card className="overflow-hidden">
