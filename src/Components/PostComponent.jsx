@@ -46,13 +46,14 @@ const PostCompi = () => {
         },
         input:
         {
-            borderRadius: "15px",
+            // borderRadius: "1rem",
             border: "0px",
+            color:"blue",
             // outlineStyle: "solid",
             // outlineColor: "black",
             // outlineWidth: "thin",
-            width: "20rem",
-            paddingLeft: "10px",
+            width: "18rem",
+            paddingLeft: "1rem",
             boxShadow: "2px 2px 2px 2px #888888"
         }
     }
@@ -83,15 +84,15 @@ const PostCompi = () => {
         // console.log(textContent);
     }
     return (
-        <div>
-            <div className="card" style={{ paddingRight: "5px", paddingLeft: "10px", marginLeft: "20px", marginTop: "40px", width: "60%", borderRadius: "10px" }}>
-                <header style={{ marginLeft: "10px", marginTop: "5px" }}>
-                    <h1 className="text-orange-700"> Create a Post</h1>
+        <div >
+            <div className="card" style={{ marginRight: "1rem", marginLeft: "2rem",marginTop: "20px",  borderRadius: "10px" }}>
+                <header style={{ marginLeft: "10px" }}>
+                    <h4 style={{cursor:"pointer"}} onClick={() => setVis((prev) => !prev)} className="text-orange-700"> Create a post</h4>
                     <hr style={{ marginRight: "20px" }} />
                 </header>
                 <div>
                     <div style={{ display: "flex" }} className="conTent">
-                        <img style={{ marginLeft: "10px", borderRadius: "50%", width: "70px", height: "70px", marginRight: "2%" }}
+                        <img style={{ marginLeft: "2rem", borderRadius: "50%", width: "4rem", height: "4rem", marginRight: "1rem" }}
                             src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8cGVvcGxlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=100&q=60" alt="imgage here" />
 
 
@@ -105,9 +106,9 @@ const PostCompi = () => {
 
 
                         <div style={{ transition: "1s all ease", display: !vis ? "none" : "block", width: "100px" }}>
-                            <h3 style={{ marginTop: "3.5%", marginLeft: "2%" }}>NAME </h3>
+                            <h3 style={{ marginTop: "0.3rem", marginLeft: "0.2rem" }}>NAME </h3>
 
-                            <h4 style={{ fontSize: "1.1rem" }}>post-here</h4>
+                            {/* <h4 style={{ fontSize: "1.1rem" }}>post-here</h4> */}
                         </div>
 
                     </div>
@@ -116,7 +117,7 @@ const PostCompi = () => {
 
                 <textarea onChange={textRecording}
                     className='textHere'
-                    style={{ transitionProperty: "display", transition: "1s all ease", display: !vis ? "none" : "block", marginTop: "25px", paddingLeft: "5px", outline: "none" }}
+                    style={{ transitionProperty: "display", transition: "1s all ease", display: !vis ? "none" : "block", marginTop: "25px", padding: "1rem", outline: "none" }}
                     placeholder="Typehere . . ."
                     name="textArea" id="inputBox"
                     cols="2"
@@ -128,7 +129,7 @@ const PostCompi = () => {
 
                     <div style={styles.upload} className='photoUploads'>
                         <MdAddPhotoAlternate style={styles.photoIcon} />
-                        <h2 style={{ fontSize: "22px", marginRight: "20px", fontFamily: "sans-serif" }}>Photo URL :</h2>
+                        <h2 style={{ fontSize: "1rem",marginTop:"0.2rem",marginRight: "1rem", fontFamily: "sans-serif" }}>Photo URL :</h2>
                         <input onChange={URLRecording} placeholder='  Enter Photo URL' type="text" style={styles.input} />
 
                     </div>

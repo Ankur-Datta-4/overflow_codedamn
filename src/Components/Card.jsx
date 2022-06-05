@@ -13,28 +13,29 @@ const Cardi = ({ post: props }) => {
             backgroundColor: "whitesmoke",
             color: "#272727",
             padding: "20px",
+            margin:"0 auto",
             borderRadius: "10px",
             border: "0px",
             borderColor: "tomato",
             borderStyle: "solid",
             transition: "200ms",
-            maxWidth: "400px"
+            maxWidth: "100%"
         }
     }
     return (
 
-        <div style={styles.CardStyles} className="card">
+        <div style={styles.CardStyles} className="card mt-5">
             <div className="card-header">
                 <div className="profile">
-                    <span className="letter">Name</span>
+                    <span className="letter"></span>
                 </div>
                 <div className="card-title-group">
                     <h5 className="card-title">{props.title}</h5>
-                    <div className="card-date">{props.date}</div>
+                    <h7 className="card-date">{props.date}</h7>
                 </div>
             </div>
 
-            <img className="card-image" src={food} alt="Logo" />
+            <div style={{display:"flex",justifyContent:"center"}}>{props.image.photourl && <img style={{height:"50%",width:"70%"}} className="card-image" src={props.image.photourl} alt="Logo" />} </div>
 
             <div className="card-text">{props.description}</div>
 
