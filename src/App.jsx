@@ -39,11 +39,12 @@ function App() {
   const isLiked = true;
   return (
     <div className="App">
-      <Navi />
+     
       {/* <BrowserRouter>
         <Routes> */}
           {user===''?(
             <BrowserRouter>
+            <Navi />
             <Routes>
             <Route path="/" element={<Landing />} />
           <Route path="/login" element={<Login />} />
@@ -55,6 +56,7 @@ function App() {
       
 
             <BrowserRouter>
+            <Navi />
             <Routes>
             <Route path="/" element={<Landing />} />
             <Route path="/login" element={<Login />} />

@@ -37,6 +37,7 @@ const Navi = () => {
     const photoURL = useSelector(selectUserPhotoURL);
     const userSlug = useSelector(selectUserSlug);
     let [loggedIn, setLoggedIn] = useState(userSlug!=="");
+    const navigate=useNavigate()
     useEffect(()=>{
         setLoggedIn(userSlug!=="");
     },[userSlug])
@@ -92,19 +93,17 @@ const Navi = () => {
                         >
                             <Nav.Link style={{ verticalAlign: "baseline", display: loggedIn ? "block" : "none", width: "3.5rem", height: "3.1rem", padding: "0px", color: "white", marginRight: "30%" }}
 
-                                href="/">
+onClick={()=>navigate('/home')}>
                                 <HomeIcon style={{ borderRadius: "30%", backgroundColor: "white", color: "black", width: "3.5rem", height: "3.1rem" }} />
                             </Nav.Link>
 
-                            <Nav.Link style={{ verticalAlign: "baseline", display: loggedIn ? "block" : "none", width: "3.5rem", height: "3.1rem", padding: "0px", color: "white", marginRight: "30%" }}
-
-                                href="/create-group">
-                                <AddBoxIcon style={{ borderRadius: "30%", backgroundColor: "white", color: "black", width: "3.5rem", height: "3.1rem" }} />
+                            <Nav.Link style={{ verticalAlign: "baseline", display: loggedIn ? "block" : "none", width: "3.5rem", height: "3.1rem", padding: "0px", color: "white", marginRight: "30%" }} onClick={()=>navigate('/create-group')}>
+                            <AddBoxIcon style={{ borderRadius: "30%", backgroundColor: "white", color: "black", width: "3.5rem", height: "3.1rem" }} />
                             </Nav.Link>
                             {/* <Nav.Link style={{ display: loggedIn ? "block" : "none", width: "50px", height: "50px", padding: "0", color: "white", marginRight: "23%" }} href="/about">ABOUT<FcAbout style={{ width: "50px", height: "50px" }} /></Nav.Link> */}
 
 
-                            <Nav.Link style={{ textAlign: "center", verticalAlign: "text-bottom", borderRadius: "30%", backgroundColor: "white", color: "black", verticalAlign: "baseline", display: loggedIn ? "block" : "none", width: "3.2rem", height: "3.2rem", padding: "0", marginRight: "30%" }} href="#action2"><MessageIcon style={{
+                            <Nav.Link style={{ textAlign: "center", verticalAlign: "text-bottom", borderRadius: "30%", backgroundColor: "white", color: "black", verticalAlign: "baseline", display: loggedIn ? "block" : "none", width: "3.2rem", height: "3.2rem", padding: "0", marginRight: "30%" }} onClick={()=>navigate('/messenger')}><MessageIcon style={{
                                 padding: "0.3rem",
                                 width: "3.2rem", height: "3.2rem"
                             }} />
@@ -116,7 +115,7 @@ const Navi = () => {
                               
 
                             </Nav.Link> */}
-                            <Avatar style={{ verticalAlign: "baseline", display: loggedIn ? "block" : "none" ,cursor:"pointer"}} alt="Remy Sharp" src={photoURL} />
+                            <Avatar style={{ verticalAlign: "baseline", display: loggedIn ? "block" : "none" ,cursor:"pointer"}} alt="Remy Sharp" src={photoURL} onClick={()=>navigate(`/user/${userSlug}`)}/>
 
                             {/* <Nav.Link style={{ display: !loggedIn ? "block" : "none", width: "50px", height: "50px", padding: "0", color: "white", marginRight: "23%" }} href="/about"></Nav.Link> */}
                             <Nav.Link style={{ display: !loggedIn ? "block" : "none", width: "50px", height: "50px", padding: "0", color: "white" }} href="#action2">
