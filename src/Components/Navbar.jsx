@@ -52,7 +52,7 @@ const Navi = () => {
             {/* <Navbar {...props} /> */}
 
 
-            <Navbar style={{ width: "100%", backgroundColor: "#000", color: "white", paddingBottom: "10px" }} expand="md">
+            <Navbar style={{ width: "100vw", backgroundColor: "#000", color: "white", paddingBottom: "2px" }} expand="md">
                 <Container fluid>
 
 
@@ -63,7 +63,7 @@ const Navi = () => {
                     <Navbar.Toggle style={{ backgroundColor: "rgba(255 , 255 , 255 , 0.25)", color: "white" }} aria-controls="navbarScroll" />
 
                     <Navbar.Collapse id="navbarScroll">
-                        <Form className="d-flex" style={{ marginRight: "14%" }}>
+                        <Form className="d-flex" style={{ marginRight: "10%" }}>
                             <FormControl
                                 style={{ display: loggedIn ? "block" : "none", width: "300px" }}
                                 type="search"
