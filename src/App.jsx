@@ -16,6 +16,8 @@ import User from './Pages/User';
 import Home from './Pages/Home'
 import Chat from './Components/Chat';
 
+import GroupProfile from './Pages/Group';
+import CreateGroup from './Pages/CreateGroup'
 function App() {
 
 
@@ -32,6 +34,8 @@ function App() {
           <Route path="/messenger" element={<Chat />} />
 
           <Route path="/user" element={<User/>}/>
+          <Route path="/group" element={<GroupProfile/>}/>
+          <Route path="/create-group" element={<CreateGroup/>}/>
         </Routes>
       </BrowserRouter>
     </div>
