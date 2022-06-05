@@ -15,11 +15,12 @@ import PostCompi from './Components/PostComponent';
 import User from './Pages/User';
 import Home from './Pages/Home'
 // import Messenger from './Pages/Messenger';
-import Card from './Components/Card';
+import Cardi from './Components/Card';
 import Chat from './Components/Chat';
 
 import GroupProfile from './Pages/Group';
 import CreateGroup from './Pages/CreateGroup'
+import Infofed from './Components/Infofed';
 function App() {
 
 
@@ -46,14 +47,11 @@ function App() {
           {/* <Route path="/messenger" element={<Messenger />} /> */}
           <Route path="/user" element={<User />} />
           <Route path="/messenger" element={<Chat />} />
-          <Route path="/test" element={<Card
-            post={recipeItem}
+          <Route path="/test" element={<Infofed />} />
 
-          />} />
-
-          <Route path="/user" element={<User/>}/>
-          <Route path="/group" element={<GroupProfile/>}/>
-          <Route path="/create-group" element={<CreateGroup/>}/>
+          <Route path="/user" element={<User />} />
+          <Route path="/group" element={<GroupProfile />} />
+          <Route path="/create-group" element={<CreateGroup />} />
         </Routes>
       </BrowserRouter>
     </div>

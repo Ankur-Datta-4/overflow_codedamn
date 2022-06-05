@@ -2,13 +2,28 @@
 import React, { useState } from "react";
 import "../Components/styles/Card.css";
 import food from '../Components/logo.png'
-const Card = ({ post: props }) => {
+const Cardi = ({ post: props }) => {
     console.log(props);
-    let [like, setLike] = useState(false);
 
+    let [like, setLike] = useState(false);
+    const styles =
+    {
+        CardStyles:
+        {
+            backgroundColor: "whitesmoke",
+            color: "#272727",
+            padding: "20px",
+            borderRadius: "10px",
+            border: "0px",
+            borderColor: "tomato",
+            borderStyle: "solid",
+            transition: "200ms",
+            maxWidth: "400px"
+        }
+    }
     return (
 
-        <div style={{ maxWidth: "400px" }} className="cardi">
+        <div style={styles.CardStyles} className="card">
             <div className="card-header">
                 <div className="profile">
                     <span className="letter">Name</span>
@@ -53,4 +68,4 @@ const Card = ({ post: props }) => {
     );
 }
 
-export default Card;
+export default Cardi;

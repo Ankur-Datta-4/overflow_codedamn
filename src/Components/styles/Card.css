@@ -1,21 +1,6 @@
-.cardi {
-	background-color: whitesmoke;
-	color: #272727;
-	padding: 20px;
-	border-radius: 10px;
-	border: 0px;
-	border-color: tomato;
-	border-style: solid;
-	transition: 200ms;
-}
 
-.cardi:hover {
-	transition: 200ms;
-	/* border: 3px; */
-	/* border-color: tomato; */
-	/* border-style: solid; */
-    box-shadow: 4px 6px;
-}
+
+
 
 .card-header {
 	display: flex;
