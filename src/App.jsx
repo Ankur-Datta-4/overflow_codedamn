@@ -23,6 +23,8 @@ import CreateGroup from './Pages/CreateGroup'
 import Infofed from './Components/Infofed';
 import { useSelector } from 'react-redux';
 import { selectUserName } from './Features/User/userSlice'
+import Search from './Components/Search';
+// import { Search } from '@mui/icons-material';
 
 import Feed from './Pages/Feed'
 // function App() {
@@ -34,7 +36,7 @@ function App() {
     recipeAuthor: "Efecan",
     title: "Avokado Ezmeli Taco",
     date: "8 Haziran 2021, Salaa",
-    image:"https://geeksgod.com/wp-content/uploads/2021/06/GeeksforGeeks.png" ,
+    image: "https://geeksgod.com/wp-content/uploads/2021/06/GeeksforGeeks.png",
     description:
       "Bu kremsi ve baharatlı avokado sosu, günlük taco'larınızı hazırlamak için harika seçeneklerden biri. Geleneksel olarak flautas veya taquitos ile servis edilir, ancak bazı vegan enchiladalara da harika bir katkı sağlar.",
   };
@@ -43,6 +45,7 @@ function App() {
   const isLiked = true;
   return (
     <div className="App">
+
 
       {/* <BrowserRouter>
         <Routes> */}
@@ -53,7 +56,8 @@ function App() {
             <Route path="/" element={<Landing />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<SignUp />} />
-            <Route path="/test" element={<Feed/>}/>
+            <Route path="/test" element={<Search />} />
+            <Route path="/test" element={<Feed />} />
 
           </Routes>
         </BrowserRouter>
@@ -66,23 +70,24 @@ function App() {
             <Route path="/" element={<Landing />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<SignUp />} />
-            
-          <Route path="/home" element={<Home />} />
-          {/* <Route path="/messenger" element={<Messenger />} /> */}
-          <Route path="/user/:id" element={<User />} />
-          <Route path="/messenger" element={<Chat />} />
-          <Route path="/test" element={<Cardi post={recipeItem}/>} />
 
-          <Route path="/user" element={<User/>}/>
-          <Route path="/group/:id" element={<GroupProfile/>}/>
-          <Route path="/create-group" element={<CreateGroup/>}/>
-          
-        </Routes>
-      </BrowserRouter>
-          )
+            <Route path="/home" element={<Home />} />
+            {/* <Route path="/messenger" element={<Messenger />} /> */}
+            <Route path="/user/:id" element={<User />} />
+            <Route path="/messenger" element={<Chat />} />
+            <Route path="/test" element={<Card post={recipeItem} />} />
 
-    }
-         
+            <Route path="/user" element={<User />} />
+            <Route path="/group" element={<GroupProfile />} />
+            <Route path="/create-group" element={<CreateGroup />} />
+
+
+          </Routes>
+        </BrowserRouter>
+      )
+
+      }
+
     </div>
   )
 }
