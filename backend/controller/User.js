@@ -108,7 +108,7 @@ const getUser=asyncWrap(async(req,res)=>{
     
 })
 
-//find by name
+
 
 
 

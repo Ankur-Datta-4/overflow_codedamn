@@ -65,8 +65,9 @@ const Navi = () => {
             <Navbar style={{ width: "100vw", backgroundColor: "#000", color: "white", paddingBottom: "2px" }} expand="md">
                 <Container fluid>
 
-                    <Navbar.Brand style={{ margin: "0", padding: "0", color: "white", fontSize: "150%", marginRight: "2rem" }} href="/">
-                        <img style={{ maxWidth: "5rem", maxHeight: "4.5rem" }} src={image} alt="" />
+
+                    <Navbar.Brand style={{ margin: "0", padding: "0", color: "white", fontSize: "150%", marginRight: "2rem" }} onClick={() => navigate('/')}>
+                        <img style={{ width: "5rem", height: "4.5rem" }} src={image} alt="" />
                     </Navbar.Brand>
                     <Search />
                     <Navbar.Toggle style={{ backgroundColor: "rgba(255 , 255 , 255 , 0.25)", color: "white" }} aria-controls="navbarScroll" />

@@ -26,6 +26,8 @@ import { selectUserName } from './Features/User/userSlice'
 import Search from './Components/Search';
 // import { Search } from '@mui/icons-material';
 
+import Feed from './Pages/Feed'
+// function App() {
 
 function App() {
 
@@ -33,8 +35,8 @@ function App() {
   const recipeItem = {
     recipeAuthor: "Efecan",
     title: "Avokado Ezmeli Taco",
-    date: "8 Haziran 2021, Salı",
-    image: pic,
+    date: "8 Haziran 2021, Salaa",
+    image: "https://geeksgod.com/wp-content/uploads/2021/06/GeeksforGeeks.png",
     description:
       "Bu kremsi ve baharatlı avokado sosu, günlük taco'larınızı hazırlamak için harika seçeneklerden biri. Geleneksel olarak flautas veya taquitos ile servis edilir, ancak bazı vegan enchiladalara da harika bir katkı sağlar.",
   };
@@ -55,6 +57,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<SignUp />} />
             <Route path="/test" element={<Search />} />
+            <Route path="/test" element={<Feed />} />
 
           </Routes>
         </BrowserRouter>
