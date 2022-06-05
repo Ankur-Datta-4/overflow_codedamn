@@ -16,6 +16,8 @@ import User from './Pages/User';
 import Home from './Pages/Home'
 import Messenger from './Pages/Messenger';
 import Card from './Components/Card';
+import Chat from './Components/Chat';
+
 function App() {
   return (
     <div className="App">
@@ -26,8 +28,9 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<SignUp />} />
           <Route path="/login/success" element={<Home />} />
-          <Route path="/messenger" element={<Messenger />} />
+          {/* <Route path="/messenger" element={<Messenger />} /> */}
           <Route path="/user" element={<User />} />
+          <Route path="/messenger" element={<Chat />} />
 
         </Routes>
       </BrowserRouter>

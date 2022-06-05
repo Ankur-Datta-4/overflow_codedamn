@@ -40,7 +40,8 @@ const createChat=asyncWrap(async(req,res)=>{
     const {isGroupChat,users,chatName}=req.body;
     let obj={isGroupChat,users,chatName};
     const resChat=await ChatModel.create(obj)
-
+    //update in users chats
+    
     if(resChat){
         return res.status(201).json({err:false,msg:`created ${resChat._id} successfully`,id:resChat._id})
     }
@@ -90,7 +91,7 @@ const getChats=asyncWrap(async(req,res)=>{
                     let doc=await UserModel.findOne({userSlug:conv.users[index]})
 
                     conv['chatName']=doc.name;
-                    
+                    conv['recvId']=doc.userSlug
                 }
             })
 
