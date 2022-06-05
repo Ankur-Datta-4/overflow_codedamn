@@ -4,6 +4,7 @@ const userRouter=require('./router/User')
 const groupRouter=require('./router/Group')
 const searchRouter=require('./router/Search')
 const msgRouter=require('./router/Messages')
+const postRouter=require('./router/Post')
 const cors=require('cors')
 const app=express()
 
@@ -16,6 +17,7 @@ app.use("/api/user",userRouter)
 app.use("/api/group",groupRouter)
 app.use("/api/search",searchRouter)
 app.use("/api/chat",msgRouter)
+app.use('/api/post',postRouter)
 
 app.get("/test",(req,res)=>{
     console.log("Tested")

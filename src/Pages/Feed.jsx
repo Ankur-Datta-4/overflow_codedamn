@@ -21,11 +21,34 @@ import {
   import { CardActionArea } from '@mui/material';
   import PostCompi from "../Components/PostComponent";
   import Cardi  from "../Components/Card"
+ import {useSelector} from 'react-redux'
+ import {selectUserName,selectUserPhotoURL,selectUserSlug} from '../Features/User/userSlice'
+import axios from "axios";
+
+const SERVERURL="http://localhost:1337/api"
+
 export default function Feed()
 {
+    const photoURL=useSelector(selectUserPhotoURL)
+  const name=useSelector(selectUserName)
+  const slug=useSelector(selectUserSlug)
     // let photourl="https://www.parisbeacon.com/wp-content/uploads/2022/04/What-Cillian-Murphy-Hates-Most-About-Tommy-Shelby-and-Peaky.jpg"
     let photourl="https://st1.latestly.com/wp-content/uploads/2020/05/Cillian-Murphy.jpg"
     let postNumber=30;
+    const [posts,setPosts]=useState()
+    useEffect(()=>{
+        axios.get(`${SERVERURL}/post`)
+        .then((res)=>{
+            if(!res.data.err){
+                setPosts(res.data.posts)
+            }
+        })
+        .catch((err)=>{
+            console.log(`Error finding posts`)
+            console.log(err)
+        })
+    },[])
+
     const recipeItem = {
         recipeAuthor: "Efecan",
         title: "Avokado Ezmeli Taco",
@@ -65,7 +88,7 @@ export default function Feed()
                                     /> */}
                                 <Avatar 
                                 style={{display:"block",marginLeft:"auto",marginRight:"auto",justifyContent:"center",left:"",position:"absolute",height:"5rem",width:"5rem",alignItems:"center", top:"3rem",zIndex:"2"}}
-                                alt="Remy Sharp" src={photourl} className="img-thumbnail rounded-circle " />
+                                alt="Remy Sharp" src={photoURL} className="img-thumbnail rounded-circle " />
                               
                                 </div>
                                 </Col>
@@ -74,7 +97,7 @@ export default function Feed()
                             <CardBody>
                                 <Row>
                                     <Col className="mt-1">
-                                        <h6 style={{textAlign:"center"}} >GEEKS FOR GEEKS GEEKS SSSsssssssssssss</h6> 
+                                        <h6 style={{textAlign:"center"}} >{name}</h6> 
                                         
 
                                         <hr></hr>
@@ -83,12 +106,12 @@ export default function Feed()
                                     
 
                                             <span style={{float:"left"}}>No. of posts : </span>
-                                            <span style={{float:"right",color:"blue"}}>{postNumber}</span>
+                                            <span style={{float:"right",color:"blue"}}>{posts && posts.length}</span>
                                         </Typography>
-                                        <Typography style={{fontWeight:"bold",display:"block",padding:"4px 6px",clear:"both"}} gutterBottom variant="h7" >
+                                        {/* <Typography style={{fontWeight:"bold",display:"block",padding:"4px 6px",clear:"both"}} gutterBottom variant="h7" >
                                             <span style={{float:"left"}}>Connections : </span>
                                             <span style={{float:"right",color:"blue"}}>{postNumber}</span>
-                                        </Typography>
+                                        </Typography> */}
                                     </Col>    
                                 </Row>
                             </CardBody>
@@ -126,7 +149,7 @@ export default function Feed()
                         <Col md={8} xs={12}>
 
                             <Card style={{}} className="overflow-hidden">
-                                <PostCompi />
+                                <PostCompi setPosts={setPosts}/>
                                 {/* <CardBody className="pt-0">
                                 <Row >
                                 <Col  sm="2">
@@ -137,10 +160,13 @@ export default function Feed()
                             </Card>
 
                             <Card className="overflow-hidden mt-2 px-5 ">
-                            <Cardi className="mt-2" post={recipeItem} />
+                            {/* <Cardi className="mt-2" post={recipeItem} />
                             <Cardi className="mt-2"  post={recipeItem} />
                             <Cardi className="mt-2" post={recipeItem} />
-                            <Cardi className="mt-2" post={recipeItem} />
+                            <Cardi className="mt-2" post={recipeItem} /> */}
+                            {
+                                posts && posts.map((postx,index)=>(<Cardi className="mt-2" post={postx} key={index}/>))
+                            }
                             </Card>
                         </Col>
                         

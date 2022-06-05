@@ -6,13 +6,20 @@ const PostSchema=mongoose.Schema({
         type:String,
         required:true
     },//can be group or user
+    parentName:{
+        type:String,
+        required:true
+    },
+    parentPhoto:{
+        type:String,
+        default:'https://robohash.org/3321'
+    },
     content:String,
-    onlyText:Boolean,
-    photoURL:[String],
-    comment:[{
-        uName:String,
-        content:String
-    }]
+    photoURL:String,
+    likes:{
+        type:Number,
+        default:0
+    }
 },{timestamps:true})
 
 const Model=mongoose.model('Post',PostSchema)

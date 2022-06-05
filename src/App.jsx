@@ -74,10 +74,10 @@ function App() {
           {/* <Route path="/messenger" element={<Messenger />} /> */}
           <Route path="/user/:id" element={<User />} />
           <Route path="/messenger" element={<Chat />} />
-          <Route path="/home" element={<Cardi post={recipeItem}/>} />
+          <Route path="/test" element={<Cardi post={recipeItem}/>} />
 
           {/* <Route path="/user" element={<User/>}/> */}
-        <Route path="/test" element={<Feed />} />
+        <Route path="/home" element={<Feed />} />
           <Route path="/group/:id" element={<GroupProfile/>}/>
           <Route path="/create-group" element={<CreateGroup/>}/>
           
