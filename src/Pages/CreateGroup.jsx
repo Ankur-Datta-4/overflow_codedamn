@@ -22,12 +22,13 @@ import { RiInstagramFill } from 'react-icons/ri';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import { SiDiscord } from 'react-icons/si';
 import { useSelector } from 'react-redux';
-import { selectUserName } from '../Features/User/userSlice';
+import { selectUserName,selectUserSlug,selectUserPhotoURL } from '../Features/User/userSlice';
 import {Badge} from "reactstrap"
-
+import axios from 'axios';
 import 'react-tagsinput/react-tagsinput.css'
 import TagsInput from 'react-tagsinput'
 import { useNavigate } from 'react-router-dom';
+const SERVERURL="http://localhost:1337/api"
 
 function Copyright(props) {
   return (
@@ -49,23 +50,61 @@ export default function GroupCreate() {
     const user=useSelector(selectUserName)
     const navigate=useNavigate()
    
+    // const name=useSelector(selectUserName)
+    const photoURL=useSelector(selectUserPhotoURL)
+    const uid=useSelector(selectUserSlug)
+
    
 
     const[tags,setTags]=useState(['react'])
+    const [group,setGroup]=useState()
     function handleChange(tags){
         setTags(tags)
     }
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      group_name: data.get('groupName'),
-      bio:data.get('bio'),
-      tags:tags
-    });
+      let obj={
+        name:data.get('groupName'),
+        bio:data.get('bio'),
+        tags,
+        people:[{name:user,photoURL,uid}],
+        admin:uid,
+        photoURL:data.get('url'),
+        links:[
+          {
+            provider:'linkedin',
+            url:data.get('linkedin')
+          },{
+            provider:'twitter',
+            url:data.get('twitter')
+          },{
+            provider:'whatsapp',
+            url:data.get('whatsapp')
+          },{
+            provider:'instagram',
+            url:data.get('instagram')
+          },{
+            provider:'discord',
+            url:data.get('discord')
+          }
+        ]
+      }
+    console.log(obj);
+
+    axios.post(`${SERVERURL}/group/`,obj)
+    .then((res)=>{
+      if(!res.data.err && res.data.resGrp){
+        setGroup(res.data.resGrp)
+        alert('Successfully submitted')
+        navigate(`/group/${res.data.resGrp.slug}`)
+      }
+    }).catch((e)=>{
+      console.log(`Error while creating group`)
+      console.log(e)
+    })
   };
 
-  console.log(tags)
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">

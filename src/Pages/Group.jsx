@@ -21,7 +21,7 @@ import {
   import { RiInstagramFill } from 'react-icons/ri';
   import { GrTwitter } from 'react-icons/gr';
   import Avatar from '@mui/material/Avatar';
-  import { Link } from "react-router-dom";
+  import { Link, useParams } from "react-router-dom";
   import AddBoxIcon from '@mui/icons-material/AddBox';
   import MarkunreadIcon from '@mui/icons-material/Markunread';
   import WhatsAppIcon from '@mui/icons-material/WhatsApp';
@@ -30,15 +30,33 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import axios from "axios";
+const SERVERURL="http://localhost:1337/api"
 
 export default function GroupProfile()
 {
-    const [like,setLike]=useState(false);;
+    const {id}=useParams()
+    const [like,setLike]=useState(false);
+    const [group,setGroup]=useState()
     const[tags,setTags]=useState(['react','java','node','abcde'])
     let memList=[{"photourl":"https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2","url":"/groups","name":"JSdddddddddsdjnc sdddddddd"},{"photourl":"https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2","url":"/groups","name":"JSdddddddddsdjnc sdddddddd"},{"photourl":"https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2","url":"/groups","name":"JSdddddddddsdjncsdddddddd"},{"photourl":"https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2","url":"/groups","name":"JSdddddddddsdjnc sdddddddd"}]
     let adminMail="reachdarshanv@gmail.com";
     let postsComp=[{"date":"4 June 2022","likes":"10","Url":"https://pbs.twimg.com/profile_images/1479443900368519169/PgOyX1vt_400x400.jpg","content":"This is my first post xD .. Please do comment and share In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available."},{"date":"4 June 2022","Url":"https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2","content":"This is my first post xD .. Please do comment and share "},{"date":"4 June 2022","Url":"https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2","content":"This is my first post xD .. Please do comment and share In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available."},{"date":"4 June 2022","Url":"https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2","content":"This is my first post xD .. Please do comment and share "}]
     let members=30;
+
+    useEffect(()=>{
+        axios.get(`${SERVERURL}/group/${id}`)
+        .then((res)=>{
+            if(!res.data.err && res.data.resGrp){
+                setGroup(res.data.resGrp)
+            }
+        })
+        .catch((e)=>{
+            console.log(`Error while fetching group ${id}`)
+            console.log(e)
+        })
+    },[id])
+
 
     function handleLike(e)
     {
@@ -47,7 +65,7 @@ export default function GroupProfile()
     }
     return(
         <React.Fragment>
-            <div className="page-content" style={{height:"100%"}}>
+        {group?(    <div className="page-content" style={{height:"100%"}}>
                 <Container style={{height:"100%",position:"relative"}}>
                     <Row className="mt-3">
                         <Card className="overflow-hidden">
@@ -55,7 +73,7 @@ export default function GroupProfile()
                                 <Row style={{  }}  >
                                     <Col xs="5">
                                     <img 
-                                    src="https://media.istockphoto.com/vectors/abstract-blue-vector-background-with-stripes-can-be-used-for-cover-vector-id1270261573?k=20&m=1270261573&s=612x612&w=0&h=8KkJd1DCgwZxMyh3AYFSzfuTRphs3mLuEMYMmUpmsmQ="
+                                    src="https://picsum.photos/id/200/1440/128"
                                     style={{borderRadius:"15px 15px 0px 0px",height:"8rem",width:"90rem",zIndex:"-1",margin:"0 auto"}}
                                     />
                                     </Col>
@@ -66,7 +84,7 @@ export default function GroupProfile()
                                 <Col  sm="4">
                                 <div className="avatar-xs profile-user-wid mb-4">
                                     <img
-                                    src="https://geeksgod.com/wp-content/uploads/2021/06/GeeksforGeeks.png"
+                                    src={group.photoURL}
                                     alt=""
                                     style={{display:"block",marginLeft:"auto",marginRight:"auto",justifyContent:"center",left:"44%",position:"absolute",height:"7rem",width:"7rem",alignItems:"center", top:"4rem",zIndex:"2"}}
                                     className="img-thumbnail rounded-circle "
@@ -79,13 +97,12 @@ export default function GroupProfile()
                             <CardBody>
                                 <Row>
                                     <Col style={{textAlign:"center"}} >
-                                        <h4 >GEEKS FOR GEEKS GEEKS SSS</h4> 
-                                        <h5>{members} members</h5>
+                                        <h4 >{group.name}</h4> 
+                                        <h5>{group.people.length} members</h5>
                                         <h3>JOIN 
                                         <AddBoxIcon onClick={()=>console.log("follow")} style={{cursor:"pointer",color:"#0980b8",height:"2rem",width:"3rem"}}/>
                                         </h3>
-                                        <h6 className="text-muted">In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.
-                                        </h6>
+                                        <h6 className="text-muted">{group.bio}</h6>
                                         {/* <h2><BsGithub src="www.google.com"/> <BsLinkedin/></h2> */}
                                         <a href="https://www.linkedin.com"><BsLinkedin className='mt-1' style={{height:"30px",width:"30px", color:"#0A66C2",marginRight:"1rem"}}/></a>              
                                         <a href="https://www.Instagram.com" ><RiInstagramFill className='mt-1' style={{height:"30px",color:"#E1306C",width:"30px",marginRight:"1rem"}}/> </a>
@@ -109,9 +126,9 @@ export default function GroupProfile()
                             <CardBody>   
                             <h3>Tags</h3>                        
                             {
-                                tags.map((e)=>{
+                                group.tags && group.tags.map((e,index)=>{
                                     return(
-                                        <Badge pill className="badge-soft-success me-1">{e}</Badge>
+                                        <Badge pill className="badge-soft-success me-1" key={index}>{e}</Badge>
                                     )
                                 })
                             }    
@@ -131,7 +148,7 @@ export default function GroupProfile()
                                     ar.map((e)=>(<li>{e}</li>))
                                 } */}
                                 {
-                                    memList.map(({photourl,url,name})=>(
+                                    group.people.map(({photoURL,uid,name})=>(
                                       
                                         <Col  style={{display:"flex",justifyContent:"center"}} className="mt-3 overflow-hidden group">
                                             <Row >
@@ -144,14 +161,14 @@ export default function GroupProfile()
                                                     style={{height:"50px",width:"50px"}}
                                                     alt=""
                                                 /> */}
-                                                <Avatar style={{marginRight:"20px"}} alt="Remy Sharp" src={photourl} className="mr-2" />
+                                                <Avatar style={{marginRight:"20px"}} alt="Remy Sharp" src={photoURL} className="mr-2" />
                                             </Col>
                                             <Col xs={8}>
                                             <div className="flex-grow-1 overflow-hidden">
                                                 <h5 className="text-truncate font-size-15 line-3 m-2">
                                                 <Link
                                                     style={{textDecoration:"none"}}
-                                                    to={`/user/${url}`}
+                                                    to={`/user/${uid}`}
                                                     className="text-dark"
                                                     xl={2}
                                                 >
@@ -174,7 +191,7 @@ export default function GroupProfile()
                                 </CardBody>
                                 <hr></hr>
                                 {/* <hr></hr> */}
-                                <h4 style={{textAlign:"center"}}>Contact admin for any queries <a href={`mailto:${adminMail}`}><MarkunreadIcon/></a></h4>
+                                <h4 style={{textAlign:"center"}}>Contact admin for any queries <Link to={`/user/${group.admin}`}><MarkunreadIcon/></Link></h4>
                             </Card>
                         </Col>
                     </Row>
@@ -232,6 +249,12 @@ export default function GroupProfile()
                     </Row>
                 </Container>
             </div>
+        ):(
+            <div>
+                Loading
+            </div>
+        )
+}
         </React.Fragment>
     )
 }

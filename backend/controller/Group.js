@@ -5,11 +5,21 @@ const PostModel=require('../models/Post')
 const {UserModel}=require('../models/User')
 //create-group
 const createGroup=asyncWrap(async(req,res)=>{
-    const {photoURL,bio,people,tags,name,admin}=req.body;
-    let obj={photoURL,bio,people,tags,name,admin}
+    const {photoURL,bio,people,tags,name,admin,links}=req.body;
+    let obj={photoURL,bio,people,tags,name,admin,links}
+
+    let user=await UserModel.findOne({userSlug:admin})
     let resGrp=await model.create(obj)
+    
+    let groups=user.groups;
+
+
+
     if(resGrp){
         console.log(resGrp)
+        let grpUpdate={photoURL,name,gid:resGrp.slug}
+        let newGrp={...user.groups,grpUpdate}
+        await UserModel.findByIdAndUpdate(user._id,newGrp)
         res.status(200).json({err:false,resGrp})
     }else{
         res.status(400).json({err:false,msg:'Invalid data'})

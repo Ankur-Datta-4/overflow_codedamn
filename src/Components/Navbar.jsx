@@ -65,7 +65,7 @@ const Navi = () => {
                 <Container fluid>
 
 
-                    <Navbar.Brand style={{ margin: "0", padding: "0", color: "white", fontSize: "150%", marginRight: "2rem" }} href="/">
+                    <Navbar.Brand style={{ margin: "0", padding: "0", color: "white", fontSize: "150%", marginRight: "2rem" }} onClick={()=>navigate('/')}>
                         <img style={{ width: "5rem", height: "4.5rem" }} src={image} alt="" />
                     </Navbar.Brand>
 

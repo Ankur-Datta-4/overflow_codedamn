@@ -1,6 +1,7 @@
 const mongoose=require('mongoose')
 const { default: slugify } = require('slugify')
 
+
 const GroupSchema=mongoose.Schema({
     photoURL:String,
     name:{
@@ -19,7 +20,14 @@ const GroupSchema=mongoose.Schema({
     admin:{
         type:String,
         required:true
-    }
+    },
+    links:[
+        {
+            provider:String,
+            url:String
+        }
+    ],
+
 })
 
 GroupSchema.pre('validate',function(next){

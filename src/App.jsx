@@ -69,7 +69,7 @@ function App() {
           <Route path="/test" element={<Card post={recipeItem}/>} />
 
           <Route path="/user" element={<User/>}/>
-          <Route path="/group" element={<GroupProfile/>}/>
+          <Route path="/group/:id" element={<GroupProfile/>}/>
           <Route path="/create-group" element={<CreateGroup/>}/>
           
         </Routes>
