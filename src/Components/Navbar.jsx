@@ -67,7 +67,7 @@ const Navi = () => {
 
 
                     <Navbar.Brand style={{ margin: "0", padding: "0", color: "white", fontSize: "150%", marginRight: "2rem" }} onClick={() => navigate('/')}>
-                        <img style={{ width: "5rem", height: "4.5rem" }} src={image} alt="" />
+                        <img style={{ backgroundColor: "black", width: "5rem", height: "4.5rem" }} src={image} alt="" />
                     </Navbar.Brand>
                     <Search />
                     <Navbar.Toggle style={{ backgroundColor: "rgba(255 , 255 , 255 , 0.25)", color: "white" }} aria-controls="navbarScroll" />
