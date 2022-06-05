@@ -15,17 +15,19 @@ import PostCompi from './Components/PostComponent';
 import User from './Pages/User';
 import Home from './Pages/Home'
 // import Messenger from './Pages/Messenger';
-import Card from './Components/Card';
+import Cardi from './Components/Card';
 import Chat from './Components/Chat';
 
 import GroupProfile from './Pages/Group';
 import CreateGroup from './Pages/CreateGroup'
-import {useSelector} from 'react-redux';
-import {selectUserName} from './Features/User/userSlice'
+import Infofed from './Components/Infofed';
+import { useSelector } from 'react-redux';
+import { selectUserName } from './Features/User/userSlice'
+
 
 function App() {
 
-  const user=useSelector(selectUserName)
+  const user = useSelector(selectUserName)
   const recipeItem = {
     recipeAuthor: "Efecan",
     title: "Avokado Ezmeli Taco",
@@ -39,25 +41,25 @@ function App() {
   const isLiked = true;
   return (
     <div className="App">
-     
+
       {/* <BrowserRouter>
         <Routes> */}
-          {user===''?(
-            <BrowserRouter>
-            <Navi />
-            <Routes>
+      {user === '' ? (
+        <BrowserRouter>
+          <Navi />
+          <Routes>
             <Route path="/" element={<Landing />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<SignUp />} />
-          
-        </Routes>
-      </BrowserRouter>
-          ):(
-      
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<SignUp />} />
 
-            <BrowserRouter>
-            <Navi />
-            <Routes>
+          </Routes>
+        </BrowserRouter>
+      ) : (
+
+
+        <BrowserRouter>
+          <Navi />
+          <Routes>
             <Route path="/" element={<Landing />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<SignUp />} />
