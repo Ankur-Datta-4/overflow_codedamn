@@ -9,7 +9,7 @@ const cors=require('cors')
 const app=express()
 
 
-const MONGO_URI='mongodb://localhost:27017/over'
+const MONGO_URI='mongodb+srv://me:Ka04mw1613@cluster0.5ghmqv1.mongodb.net/?retryWrites=true&w=majority'
 app.use(cors())
 app.use(express.json())
 

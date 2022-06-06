@@ -9,12 +9,6 @@ import {
     Row,
     CardBody,
     Badge,
-    Button,
-    Modal,
-    ModalFooter,
-    ModalHeader,
-    ModalBody,
-    UncontrolledTooltip,
   } from "reactstrap"
 
 import GitHubCalendar from 'react-github-calendar';
@@ -22,7 +16,7 @@ import { BsLinkedin } from 'react-icons/bs';
 import { BsGithub } from 'react-icons/bs';
 import { Link, useParams } from "react-router-dom";
 import Avatar from '@mui/material/Avatar';
-import TagsInput from 'react-tagsinput'
+// import TagsInput from 'react-tagsinput'
 
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -31,20 +25,31 @@ import { CardActionArea } from '@mui/material';
 import { useSelector } from "react-redux";
 import { selectUserSlug } from "../Features/User/userSlice";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
+import {useRouter} from 'next/router'
+
 const SERVERURL="http://localhost:1337/api"
 
 export default function User()
 {
-    // const {id}=useParams()
-    const id=`ankurr2002gmailcom`
+    const {id}=useParams()
+    // const id=`ankurr2002gmailcom`
     const slug=useSelector(selectUserSlug)
+
+    const router=useRouter()
+    useEffect(()=>{
+        if(slug==="" || !slug){
+            router.push('/')
+        }
+    },[])
+
     const [privilege,setPrivilege]=useState(id===slug)
     const[tags,setTags]=useState(['react','java','node','abcde'])
     const [user,setUser]=useState()
     const [index,setIndex]=useState(0)
     const [gitUsername,setGitUsername]=useState('')
-    const navigate=useNavigate()
+    // const navigate=useNavigate()
+
     useEffect(()=>{
         axios.get(`${SERVERURL}/user/ankurr2002gmailcom`)
         .then((res)=>{
@@ -225,7 +230,7 @@ export default function User()
                     
                     <Row className="mt-2">
                         <Card>
-                            <CardBody onClick={()=>navigate('/test')}>
+                            <CardBody onClick={()=>router.push('/test')}>
                                 <h3 style={{textAlign:"center",cursor:'pointer'}}>POSTS</h3>
                             </CardBody>
                             <Row mr={4} mb={5}>                            
